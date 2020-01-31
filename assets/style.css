@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("img/fancy-pants.jpg");
+    color: #333333;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+header {
+    padding-top: 6vh;
+    font-family: 'Scope One', serif;
+    font-size: 2.5em;
+}
+
+nav {
+    padding-top: 20px;
+}
+
+header, nav {
+    background-color: #F2F2F2;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    text-decoration: underline;
+}
+
+nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+article div {
+    padding: 1vw 1vw;
+    margin: 2.5vw 2.5vw;
+    border-radius: 15px;
+    background-color: #EEEEEE;
+}
+
+article div img {
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+}
+
+article div p {
+    font-style: oblique;
+}
+
+article div button {
+    float: right;
+    background-color: #333333;
+    color: #F2F2F2;
+    padding: 10px 10px;
+    border-radius: 3px;
+    border: inherit;
+}
+
+footer {
+    background-color: #333333;
+    color: #F2F2F2;
+    padding: 20px 20px;
+}
