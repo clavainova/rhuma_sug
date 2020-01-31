@@ -24,6 +24,19 @@ nav {
     padding-top: 20px;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown-content a {
+    display: block;
+}
+
+.dropbtn:hover .dropdown-content {
+    display: block;
+}
+
 header, nav {
     background-color: #F2F2F2;
     padding-bottom: 20px;
@@ -62,6 +75,7 @@ article div {
 article div img {
     width: 20vw;
     height: 20vw;
+    border-radius: 3px;
     object-fit: cover;
 }
 
