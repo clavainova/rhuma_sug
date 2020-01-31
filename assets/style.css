@@ -7,6 +7,7 @@ body {
     background-image: url("img/fancy-pants.jpg");
     color: #333333;
     font-family: 'Open Sans', sans-serif;
+    background-attachment: fixed;
 }
 
 a {
@@ -90,6 +91,51 @@ article div button {
     padding: 10px 10px;
     border-radius: 3px;
     border: inherit;
+}
+
+h2 {
+    background-color: #EEEEEE;
+    font-size: 4em;
+    padding-left: 5vw;
+    width: 30vw;
+    margin-top: 5vh;
+    border-radius: 0px 13px 13px 0px;
+}
+
+section article {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: rgb(238, 238, 238);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    min-height: 14vw;
+    border-radius: 13px;
+}
+
+section article div {
+    text-align: left;
+    background: none;
+    padding-top: 2vw;
+}
+
+section article img {
+    height: 10vw;
+    float: left;
+    margin: 2vw;
+    border-radius: 13px;
+    object-fit: cover;
+    width: 10vw;
+}
+
+form {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    border-radius: 13px;
+    padding: 2.5vw 2.5vw;
+    background-color: #F2F2F2;
 }
 
 footer {
