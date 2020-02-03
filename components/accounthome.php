@@ -22,5 +22,4 @@
             <p>Change your delivery address or update your payment method</p>
         </div>
     </a>
-
 </article>
