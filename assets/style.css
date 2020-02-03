@@ -136,6 +136,20 @@ form {
     border-radius: 13px;
     padding: 2.5vw 2.5vw;
     background-color: #F2F2F2;
+    display: grid;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    grid-template-columns: 1fr 3fr;
+    grid-row-gap: 1em;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+form p{
+    margin-left: 20px;
+}
+
+input{
+    max-height: 1.5em;
 }
 
 footer {

@@ -22,7 +22,7 @@ include "components/head.php";
       include "components/about.php";
       break;
     case ("connexion"):
-      include "components/connexion.php";
+      include "components/login.php";
       break;
     case ("panier"):
       include "components/panier.php";
