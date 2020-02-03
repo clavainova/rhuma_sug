@@ -25,19 +25,6 @@ nav {
     padding-top: 20px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-}
-
-.dropdown-content a {
-    display: block;
-}
-
-.dropbtn:hover .dropdown-content {
-    display: block;
-}
-
 header, nav {
     background-color: #F2F2F2;
     padding-bottom: 20px;
@@ -156,4 +143,10 @@ footer {
     background-color: #333333;
     color: #F2F2F2;
     padding: 20px 20px;
+}
+
+.three-col{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
 }

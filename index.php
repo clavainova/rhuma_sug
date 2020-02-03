@@ -21,11 +21,25 @@ include "components/head.php";
     case ("about"):
       include "components/about.php";
       break;
+      //account stuff
+    case ("panier"):
+      include "components/panier.php";
+      break;
     case ("connexion"):
       include "components/login.php";
       break;
-    case ("panier"):
-      include "components/panier.php";
+      //settings
+    case ("settings"):
+      include "components/accounthome.php";
+      break;
+    case ("history"):
+      include "components/history.php";
+      break;
+    case ("tracking"):
+      include "components/tracking.php";
+      break;
+    case ("update"):
+      include "components/update.php";
       break;
     default: ?> <h2>404 Page Not Found</h2><br><br>
   <?php
