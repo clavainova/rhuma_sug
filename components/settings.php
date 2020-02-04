@@ -1,7 +1,6 @@
 <?php
 //verify that account is logged in and that the user's data matches the database
 //if not, redirect to login page 
-//return boolean
 include "account_management/functions.php";
 include "account_management/sessionstart.php";
 if (verifyLogin()) :

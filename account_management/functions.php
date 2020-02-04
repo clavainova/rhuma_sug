@@ -208,18 +208,29 @@ function logout()
 }
 
 //are they logged in?
-//currently doen't support cookies
+//currently doen't work
 function verifyLogin()
 {
     $pdo = getConnection();
-    if ((!isset($_SESSION["email"])) && (!isset($_COOKIE["email"]))) {
-        return false;
-    } else if (!fetchSpecificUser($pdo, "email", $_SESSION['email'])) {
-        return false;
-    } else if (!fetchSpecificUser($pdo, "email", $_COOKIE['email'])) {
-        return false;
+    //have to nest if statements because if not set, second statement
+    //will throw an error
+
+    //start by checking session
+    if (isset($_SESSION["email"])) {
+        if (fetchSpecificUser($pdo, "email", $_SESSION['email'])) {
+            return true;
+        }
     }
-    return true;
+
+    //then check cookie
+    if (isset($_COOKIE["email"])) {
+        if (fetchSpecificUser($pdo, "email", $_COOKIE['email'])) {
+            return true;
+        }
+    }
+
+    //this point reached if no session registered OR current session doesn't match the database
+    return false;
 }
 
 function redirect()

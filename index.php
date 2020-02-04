@@ -28,7 +28,7 @@ include "classes/utilisateur.php";
       break;
       //settings
     case ("settings"):
-      include "components/accounthome.php";
+      include "components/settings.php";
       break;
     case ("history"):
       include "components/history.php";

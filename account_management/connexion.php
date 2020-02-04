@@ -3,10 +3,13 @@ include "functions.php";
 include "sessionstart.php";
 include "../classes/utilisateur.php";
 
+$error = false; //this is where we store the error code if there is one
+//should probably return it and display it somehow
+
 if ((!isset($_POST["email"]) || $_POST["email"] == "")
     || (!isset($_POST["pass"]) || $_POST["pass"] == "")
 ) {
-    die("FAILURE no password or no email entered<br>");
+    $error = 101; //incomplete fields
 } else {
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["pass"] = $_POST["pass"];
@@ -24,12 +27,19 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
             }
             session_write_close();
         } else {
-            print("password mismatch");
+            $error = 103; //password entered incorrectly"
         }
     } else {
-        die("user not in table");
+        $error = 102; //user with that email does not exist
     }
 }
 
-print("data stored in session, email: " . $_SESSION["email"] . " pass: " . $_SESSION["pass"]);
+
+if(!$error){
+    print("data stored in session, email: " . $_SESSION["email"] . " pass: " . $_SESSION["pass"]);
+}
+else{
+    //return error somehow and display it
+}
+
 redirect();

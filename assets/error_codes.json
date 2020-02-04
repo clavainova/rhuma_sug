@@ -9,7 +9,7 @@
     },
     {
         "id": "102",
-        "desc": "Email entered incorrectly (code:102)"
+        "desc": "Account with that email does not exist (code:102)"
     },
     {
         "id": "103",
