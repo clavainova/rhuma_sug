@@ -2,7 +2,8 @@
 
 //***********************[GENERAL VERIFICATION]***********************//
 
-//do the two arguments match? true match - same case
+//do the two arguments match? 
+//true match (same case) beacuse this is also for case sensitive fields
 //returns: bool
 function checkMatch($str, $str2)
 {
@@ -30,7 +31,7 @@ function checkUnique($pdo, $thisUser)
 {
     $results = fetchData($pdo);
     foreach ($results as $value) {
-        if ($value["username"] == $thisUser->getEmail()) {
+        if ($value["email"] == $thisUser->getEmail()) {
             return false;
         }
     }
@@ -163,13 +164,14 @@ function sendVerificationEmail($thisUser){
 //***********************[MISC]***********************//
 
 //generate a hash code for account verification
-//returns variable with hash
+//returns hash
 function getHash()
 {
     return md5(rand(0, 1000));
 }
 
 //logout: unset cookies, destroy session, redirect to index
+//no return
 function logout()
 {
     try {

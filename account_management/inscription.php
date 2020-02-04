@@ -1,5 +1,7 @@
 <?php
 //doing hash verification
+
+
 include "sessionstart.php"; //try to start sesison if not already running
 include "utilisateur.php"; //user class
 require "functions.php"; //functions
