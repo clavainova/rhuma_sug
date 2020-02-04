@@ -1,7 +1,11 @@
 <?php
-//verify that account is logged in
+//verify that account is logged in and that the user's data matches the database
 //if not, redirect to login page 
+//return boolean
+include "account_management/functions.php";
+if(verifyLogin()):
 ?>
+<h2>LOGOUT</h2>
 
 <article class="three-col">
     <a href="http://localhost/RhumaSug/index.php?page=history">
@@ -23,3 +27,10 @@
         </div>
     </a>
 </article>
+<?php
+else:
+    include "login.php";
+    ?>
+    not logged in
+    <?php
+endif;

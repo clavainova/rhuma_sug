@@ -2,6 +2,7 @@
 <html>
 <?php
 include "components/head.php";
+include "classes/utilisateur.php";
 ?>
 
 <body>
@@ -24,9 +25,6 @@ include "components/head.php";
       //account stuff
     case ("panier"):
       include "components/panier.php";
-      break;
-    case ("connexion"):
-      include "components/login.php";
       break;
       //settings
     case ("settings"):

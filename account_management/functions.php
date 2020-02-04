@@ -1,5 +1,6 @@
 <?php
 
+
 //***********************[GENERAL VERIFICATION]***********************//
 
 //do the two arguments match? 
@@ -92,7 +93,7 @@ function getConnection()
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
         //check server connection, die if fails, return outcome: true if successful
-        print(json_encode(array('outcome' => true)) . "<br>");
+        //print(json_encode(array('outcome' => true)) . "<br>");
     } catch (PDOException $ex) {
         //die if connection fails
         die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
@@ -123,8 +124,9 @@ function fetchSpecificUser($pdo, $index, $field)
             //the values are good but they're not being constructed in the object
             //correctly -- this is the locaion of the error
             $user = new Utilisateur($value["email"], $value["password"]);
-            print("values in object when passed<br>");
-            $user->checkValues();
+            //for testing:
+            //print("<br>values in object when passed<br>");
+            //$user->checkValues();
             return $user;
         }
     }
@@ -194,23 +196,35 @@ function logout()
 {
     try {
         //remove session
-        unset($_SESSION['username']);
+        unset($_SESSION['email']);
         unset($_SESSION['pass']);
         session_destroy();
         //remove all cookies too
-        setcookie('username', "");
+        setcookie('email', "");
         setcookie('password', "");
     } catch (Exception $e) {
         print("logout failed" . $e);
     }
-    //redirect();
+}
+
+function verifyLogin()
+{
+    $pdo = getConnection();
+    if ((!isset($_SESSION["email"])) && (!isset($_COOKIE["email"]))) {
+        return false;
+    } else if (!fetchSpecificUser($pdo, "email", $_SESSION['email'])) {
+        return false;
+    } else if (!fetchSpecificUser($pdo, "email", $_COOKIE['email'])) {
+        return false;
+    }
+    return true;
 }
 
 function redirect()
 {
 ?>
     <script type="text/javascript">
-        window.location.href = "index.php";
+        window.location.href = "http://localhost/RhumaSug/index.php?page=settings";
     </script>
 <?php
 }

@@ -1,16 +1,24 @@
 <?php
 class Utilisateur
 {
+    private $email;
+    private $password;
     //this class used to temporarily store users
     //and also to process queries which will then become users in the database
-    function __construct($email, $password)
+    //****************************************************** */
+    //use polymorphism for complete/incomplete user?? 
+    //fetch rest of fields from db directly??
+    //compulsory on creation
+    public function __construct($mail, $pass)
     {
-        //use polymorphism for complete/incomplete user?? 
-        //fetch rest of fields from db directly??
-        //compulsory on creation
-        $this->email = $email;
-        $this->password = $password;
-        /*
+        //print("initialising, email: " . $mail . "<br>pass: " . $pass);
+        $this->email = $mail;
+        $this->password = $pass;
+        //print("<br>initialising 2, email: " . $this->email . "<br>pass: " . $this->password);
+    }
+    /*
+    //normally part of the constructor
+    //getting lots of errors so it goes here for a bit
         $this->hash = $hash;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -29,12 +37,12 @@ class Utilisateur
         //encapsulated for security
         $this->paymentId = "";
         */
-    }
 
     //for testing, to see if it has values
-    function checkValues(){
-        print("printing values <br>" . $this->email);
-        print($this->password);
+    function checkValues()
+    {
+        print("printing values <br>" . var_dump($this->email));
+        print("<br>" . var_dump($this->password));
     }
 
     //ok so this seems like a huge security risk

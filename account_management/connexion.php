@@ -3,9 +3,6 @@ include "functions.php";
 include "sessionstart.php";
 include "../classes/utilisateur.php";
 
-//for testing
-logout();
-
 if ((!isset($_POST["email"]) || $_POST["email"] == "")
     || (!isset($_POST["pass"]) || $_POST["pass"] == "")
 ) {
@@ -18,7 +15,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
     $user = fetchSpecificUser($pdo, "email", $_SESSION["email"]);
     if (($user !== "false")) {
         if ($user->getPassword() == $_SESSION["pass"]) {
-            echo "correct";
+            //login successful
             //add remember me cookie if relevant
             if ($_POST["remember_me"] == '1' || $_POST["remember_me"] == 'on') {
                 $hour = time() + 3600 * 24 * 30;
@@ -26,11 +23,12 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
                 setcookie('password', $_SESSION["pass"], time() + 3600);
             }
         } else {
-            echo "stored password: " . $user->getPassword();
-            echo "<br>entered password: " . $_SESSION["pass"];
-            echo "<br>password mismatch";
+            print("password mismatch");
         }
     } else {
         die("user not in table");
     }
 }
+
+print("data stored in session, email: " . $_SESSION["email"] . " pass: " . $_SESSION["pass"]);
+redirect();
