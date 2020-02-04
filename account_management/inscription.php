@@ -1,9 +1,13 @@
+
+
 <?php
+include "../classes/utilisateur.php";
+
 //doing hash verification
 
 
 include "sessionstart.php"; //try to start sesison if not already running
-include "utilisateur.php"; //user class
+include "../classes/utilisateur.php"; //user class
 require "functions.php"; //functions
 //for email sending
 require_once 'vendor/autoload.php';
@@ -16,15 +20,15 @@ use PHPMailer\PHPMailer\Exception;
 
 
 //check user and pass are set
-if ((!isset($_POST["username"]) || $_POST["username"] == "") || (!isset($_POST["pass"]) || $_POST["pass"] == "")) {
+if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]) || $_POST["pass"] == "")) {
     //if nothing entered or fields incomplete, redirect back to the login page
     print("nothing entered/fields incomplete");
 } else {
-    $_SESSION["username"] = $_POST["username"];
+    $_SESSION["email"] = $_POST["email"];
     $_SESSION["pass"] = $_POST["pass"];
     $hash = md5( rand(0,1000) );
-    $thisUser = new Utilisateur($_SESSION["username"], $_SESSION["pass"], $hash);
-    print ("session variables set. <br><b>user:</b> ") . $_SESSION["username"] . "<br><b>pass:</b> " . $_SESSION["pass"] . "<br>";
+    $thisUser = new Utilisateur($_SESSION["email"], $_SESSION["pass"], $hash);
+    print ("session variables set. <br><b>user:</b> ") . $_SESSION["email"] . "<br><b>pass:</b> " . $_SESSION["pass"] . "<br>";
     //now we know that they exist, check if valid
     if ($thisUser->isEmailValid() && $thisUser->isPassValid()) {
         print("validated<br>");

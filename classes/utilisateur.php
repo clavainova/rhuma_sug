@@ -1,36 +1,70 @@
 <?php
 class Utilisateur
 {
-    function __construct($email, $password, $hash)
+    //this class used to temporarily store users
+    //and also to process queries which will then become users in the database
+    function __construct($email, $password)
     {
+        //use polymorphism for complete/incomplete user?? 
+        //fetch rest of fields from db directly??
+        //compulsory on creation
         $this->email = $email;
         $this->password = $password;
+        /*
         $this->hash = $hash;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        //optional
+        $this->birthday = "";
+        $this->phone = "";
+        //delivery - added with function
+        //not obligatory on creation
+        $this->addr1 = "";
+        $this->addr2 = "";
+        $this->city = "";
+        $this->region = "";
+        $this->postcode = "";
+        $this->country = "";
+        //payment details - added with function
+        //encapsulated for security
+        $this->paymentId = "";
+        */
     }
 
-    public function getEmail()
+    //for testing, to see if it has values
+    function checkValues(){
+        print("printing values <br>" . $this->email);
+        print($this->password);
+    }
+
+    //ok so this seems like a huge security risk
+    //could get hash, username... just about anything.. hmmm
+    public function __get($property)
     {
-        return $this->email;
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
     }
 
-    public function getHash()
-    {
-        return $this->hash;
-    }
-
-    //this seems like a security risk
     public function getPassword()
     {
         return $this->password;
     }
 
-    public function setEmail($email)
+    public function __set($property, $value)
     {
-        $this->email = $email;
+        if (property_exists($this, $property)) {
+            $this->$property = $value;
+        }
     }
 
-    public function setPassword($pass)
+    //not compulsory at time of construction, but these fields are required
+    //to order things
+    public function addPaymentData()
     {
-        $this->password = $pass;
+    }
+
+    public function addPostageData()
+    {
     }
 }

@@ -86,9 +86,9 @@ function getConnection()
     //connect to server
     try {
         $conn = new PDO(
-            "mysql:host=localhost;dbname=php_formulaires;port=3306",
+            "mysql:host=localhost;dbname=rhumsug;port=3306",
             "clavain",
-            "",
+            "impimp88",
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
         //check server connection, die if fails, return outcome: true if successful
@@ -113,8 +113,27 @@ function fetchData($pdo)
     //var_dump($results);
 }
 
+//fetch a specific user based on a data point
+//returns a new client object
+function fetchSpecificUser($pdo, $index, $field)
+{
+    $users = fetchData($pdo);
+    foreach ($users as $value) {
+        if ($value[$index] == $field) {
+
+            //the values are good but they're not being constructed in the object
+            //correctly -- this is the locaion of the error
+            $user = new Utilisateur($value["email"], $value["password"]);
+            print("values in object when passed<br>");
+            $user->checkValues();
+            return $user;
+        }
+    }
+    return false;
+}
+
 //add a user to the database
-//currently lacking several required arguments
+//currently lacking several required arguments -- incomplete
 function addUser($conn, $user, $pass)
 {
     if ($stmt = $conn->prepare('INSERT INTO Clients (nom,password) VALUES (?,?)')) {
@@ -184,7 +203,13 @@ function logout()
         setcookie('password', "");
     } catch (Exception $e) {
         print("logout failed" . $e);
-    } ?>
+    }
+    //redirect();
+}
+
+function redirect()
+{
+?>
     <script type="text/javascript">
         window.location.href = "index.php";
     </script>
