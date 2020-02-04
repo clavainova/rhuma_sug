@@ -22,6 +22,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
                 setcookie('email', $_SESSION["email"], time() + 3600);
                 setcookie('password', $_SESSION["pass"], time() + 3600);
             }
+            session_write_close();
         } else {
             print("password mismatch");
         }

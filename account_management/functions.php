@@ -207,6 +207,8 @@ function logout()
     }
 }
 
+//are they logged in?
+//currently doen't support cookies
 function verifyLogin()
 {
     $pdo = getConnection();
