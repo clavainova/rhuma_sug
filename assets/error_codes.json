@@ -1,11 +1,11 @@
 [
     {
-        "id": "100",
-        "desc": "One or more fields incomplete (code:100)"
+        "id": "200",
+        "desc": "Connection with database failed (code:200)"
     },
     {
         "id": "101",
-        "desc": "Connection with database failed (code:101)"
+        "desc": "One or more fields incomplete (code:101)"
     },
     {
         "id": "102",

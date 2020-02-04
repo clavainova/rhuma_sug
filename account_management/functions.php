@@ -88,7 +88,7 @@ function getConnection()
         $conn = new PDO(
             "mysql:host=localhost;dbname=rhumsug;port=3306",
             "clavain",
-            "impimp88",
+            "",
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
         //check server connection, die if fails, return outcome: true if successful
@@ -120,7 +120,6 @@ function fetchSpecificUser($pdo, $index, $field)
     $users = fetchData($pdo);
     foreach ($users as $value) {
         if ($value[$index] == $field) {
-
             //the values are good but they're not being constructed in the object
             //correctly -- this is the locaion of the error
             $user = new Utilisateur($value["email"], $value["password"]);
