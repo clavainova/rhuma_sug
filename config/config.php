@@ -15,7 +15,4 @@ define('TITLE','Rhuma Sug');
 define('COMPONENTS',"components");
 
 define('ROUTES',include 'config/routes.php');
-
-define('DATAS_PATH','datas');
-
 ?>

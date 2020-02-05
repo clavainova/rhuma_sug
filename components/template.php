@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
     <?php
     include_once COMPONENTS . '/head.php';
     ?>
-</head>
 
 <body>
     <?php

@@ -18,7 +18,7 @@ class Router
         {
             $method = ROUTES[$route];
         }else{
-            $method = "page404";
+            $method = "404";
         }
         return $method;
     }

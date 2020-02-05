@@ -18,8 +18,7 @@ class Controller
 
     public function blog()
     {
-        $articles = json_decode(file_get_contents(DATAS_PATH."/blog.json"));
-        $this->render('blog.php',array("articles"=>$articles));
+        $this->render('blog.php');
     }
 
     public function contact()
