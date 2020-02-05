@@ -233,11 +233,7 @@ function verifyLogin()
     return false;
 }
 
-function redirect()
+function redirect($url)
 {
-?>
-    <script type="text/javascript">
-        window.location.href = "http://localhost/RhumaSug/index.php?page=settings";
-    </script>
-<?php
+    header("Location: " . $url);
 }

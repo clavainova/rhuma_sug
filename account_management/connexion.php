@@ -25,6 +25,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
                 setcookie('email', $_SESSION["email"], time() + 3600);
                 setcookie('password', $_SESSION["pass"], time() + 3600);
             }
+            //it's finished, was successful
             session_write_close();
         } else {
             $error = 103; //password entered incorrectly"
@@ -39,7 +40,8 @@ if(!$error){
     print("data stored in session, email: " . $_SESSION["email"] . " pass: " . $_SESSION["pass"]);
 }
 else{
+    print("error: " . $error);
     //return error somehow and display it
 }
 
-redirect();
+redirect(""); //pass in settings homepage
