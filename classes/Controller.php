@@ -34,11 +34,7 @@ class Controller
 
     public function page404()
     {
-        $this->render('page_404.php');
-    }
-
-    public function jsonToto(){
-        echo json_encode(['toto'=>'toto']);
+        $this->render('404.php');
     }
 
     private function render($template,$params=null)
@@ -50,7 +46,7 @@ class Controller
             extract($params);
         }
         
-        include TEMPLATE.'/base.php';
+        include COMPONENTS.'/template.php';
     }
 }
 

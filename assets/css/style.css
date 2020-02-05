@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url("img/fancy-pants.jpg");
+    background-image: url("../img/fancy-pants.jpg");
     color: #333333;
     font-family: 'Open Sans', sans-serif;
     background-attachment: fixed;
