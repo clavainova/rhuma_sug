@@ -1,0 +1,10 @@
+- implement error codes json
+- make it load
+- fix path problems
+- inscription
+- settings html
+- fill db products table
+- read from db for loading things on:
+	>produits
+	>settings
+-basket building and cookies

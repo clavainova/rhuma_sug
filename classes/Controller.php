@@ -6,29 +6,24 @@ namespace App;
 
 class Controller
 {
-    public function accueil()
-    {
-        $this->render('accueil.php');
-    }
-
     public function produits()
     {
         $this->render('produits.php');
     }
 
-    public function blog()
-    {
-        $this->render('blog.php');
-    }
-
-    public function contact()
-    {
-        $this->render('contact.php');
-    }
-
     public function about()
     {
         $this->render('about.php');
+    }
+
+    public function settings()
+    {
+        $this->render('settings.php');
+    }
+
+    public function panier()
+    {
+        $this->render('panier.php');
     }
 
     public function page404()

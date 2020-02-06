@@ -1,4 +1,2 @@
-RewriteEngine  on
-RewriteRule ^(.*)$ $1.php
-AddType text/css .css 
+
 AcceptPathInfo On
