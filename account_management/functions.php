@@ -1,6 +1,5 @@
 <?php
 
-
 //***********************[GENERAL VERIFICATION]***********************//
 
 //do the two arguments match? 
@@ -89,7 +88,7 @@ function getConnection()
         $conn = new PDO(
             "mysql:host=localhost;dbname=rhumsug;port=3306",
             "clavain",
-            "",
+            "impimp88",
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
         //check server connection, die if fails, return outcome: true if successful
@@ -194,45 +193,44 @@ function getHash()
 //no return
 function logout()
 {
-    try {
+    include "sessionstart.php";
+    if (isset($_SESSION['email'])) {
         //remove session
         unset($_SESSION['email']);
         unset($_SESSION['pass']);
         session_destroy();
+    }
+    if (isset($_COOKIE['email'])) {
         //remove all cookies too
         setcookie('email', "");
         setcookie('password', "");
-    } catch (Exception $e) {
-        print("logout failed" . $e);
     }
 }
 
 //are they logged in?
-//currently doen't work
+//probably better if they check the password as well
 function verifyLogin()
 {
     $pdo = getConnection();
-    //have to nest if statements because if not set, second statement
-    //will throw an error
 
     //start by checking session
     if (isset($_SESSION["email"])) {
+        // print("session found: " . $_SESSION["email"]);
         if (fetchSpecificUser($pdo, "email", $_SESSION['email'])) {
             return true;
         }
     }
-
     //then check cookie
     if (isset($_COOKIE["email"])) {
         if (fetchSpecificUser($pdo, "email", $_COOKIE['email'])) {
             return true;
         }
     }
-
     //this point reached if no session registered OR current session doesn't match the database
     return false;
 }
 
+//probably best to combine this with the routing system
 function redirect($url)
 {
     header("Location: " . $url);

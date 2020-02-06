@@ -2,4 +2,4 @@
 include "functions.php";
 
 logout();
-redirect();
+redirect("http://localhost/RhumaSug/index.php?page=settings");

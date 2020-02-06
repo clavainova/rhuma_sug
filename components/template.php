@@ -2,6 +2,7 @@
 <html lang="fr">
 
     <?php
+    include_once "classes/utilisateur.php";
     include_once COMPONENTS . '/head.php';
     ?>
 

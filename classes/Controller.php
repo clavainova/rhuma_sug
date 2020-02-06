@@ -21,6 +21,21 @@ class Controller
         $this->render('settings.php');
     }
 
+    public function history()
+    {
+        $this->render('history.php');
+    }
+
+    public function tracking()
+    {
+        $this->render('tracking.php');
+    }
+
+    public function update()
+    {
+        $this->render('update.php');
+    }
+
     public function panier()
     {
         $this->render('panier.php');
