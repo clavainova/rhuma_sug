@@ -22,11 +22,11 @@ use PHPMailer\PHPMailer\Exception;
 //check user and pass are set
 if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]) || $_POST["pass"] == "")) {
     //if nothing entered or fields incomplete, redirect back to the login page
-    print("nothing entered/fields incomplete");
+    $error = 101; //incomplete fields
 } else {
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["pass"] = $_POST["pass"];
-    $hash = md5( rand(0,1000) );
+    $hash = md5(rand(0, 1000));
     $thisUser = new Utilisateur($_SESSION["email"], $_SESSION["pass"], $hash);
     print ("session variables set. <br><b>user:</b> ") . $_SESSION["email"] . "<br><b>pass:</b> " . $_SESSION["pass"] . "<br>";
     //now we know that they exist, check if valid
@@ -52,3 +52,9 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
         // - display message here?
     }
 }
+
+if ($error) {
+    $_SESSION["error"] = $error;
+}
+
+redirect("http://localhost/RhumaSug/index.php?page=settings"); //pass in settings homepage

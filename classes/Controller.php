@@ -43,7 +43,12 @@ class Controller
 
     public function page404()
     {
-        $this->render('404.php');
+        $this->render('page404.php');
+    }
+
+    public function page200()
+    {
+        $this->render('page200.php');
     }
 
     private function render($template,$params=null)

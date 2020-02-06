@@ -150,3 +150,11 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
 }
+
+.error{
+    left: 50px;
+    text-align: center;
+    background: rgb(255, 242, 121);
+    color: #ff2a2a;
+    padding: 20px 20px;
+}

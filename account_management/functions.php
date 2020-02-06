@@ -88,14 +88,14 @@ function getConnection()
         $conn = new PDO(
             "mysql:host=localhost;dbname=rhumsug;port=3306",
             "clavain",
-            "impimp88",
+            "",
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
         //check server connection, die if fails, return outcome: true if successful
         //print(json_encode(array('outcome' => true)) . "<br>");
     } catch (PDOException $ex) {
-        //die if connection fails
-        die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
+        //if connection fails
+        return false;
     }
     return $conn;
 }

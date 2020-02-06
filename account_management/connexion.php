@@ -16,9 +16,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
     //get connection and check tokens match
     $pdo = getConnection();
     $user = fetchSpecificUser($pdo, "email", $_SESSION["email"]);
-    if (($user != false)) {
-        var_dump($user !== false);
-        var_dump($user);
+    if (($user !== false)) {
         if ($user->getPassword() == $_SESSION["pass"]) {
             //login successful
             //add remember me cookie if relevant
@@ -38,12 +36,8 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
 }
 
 
-if(!$error){
-    print("data stored in session, email: " . $_SESSION["email"] . " pass: " . $_SESSION["pass"]);
-}
-else{
-    print("error: " . $error);
-    //return error somehow and display it
+if ($error) {
+    $_SESSION["error"] = $error;
 }
 
 redirect("http://localhost/RhumaSug/index.php?page=settings"); //pass in settings homepage
