@@ -28,6 +28,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
             //it's finished, was successful
             session_write_close();
         } else {
+            print("wrong pass");
             $error = 103; //password entered incorrectly"
         }
     } else {
@@ -38,6 +39,8 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
 
 if ($error) {
     $_SESSION["error"] = $error;
+    unset($_SESSION['email']);
+    unset($_SESSION['pass']);
 }
 
 redirect("http://localhost/RhumaSug/index.php?page=settings"); //pass in settings homepage

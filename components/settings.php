@@ -3,7 +3,7 @@
 //if not, redirect to login page 
 include "account_management/functions.php";
 include "account_management/sessionstart.php";
-if (!getConnection()) :
+if (getConnection() == false) :
 ?>
     <div class="error">
         <?php

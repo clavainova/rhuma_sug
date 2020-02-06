@@ -82,10 +82,7 @@ article div button {
 
 h2 {
     background-color: #EEEEEE;
-    font-size: 4em;
-    padding-left: 5vw;
-    width: 30vw;
-    margin-top: 5vh;
+    font-size: 4em;100vw
     border-radius: 0px 13px 13px 0px;
 }
 
@@ -157,4 +154,10 @@ footer {
     background: rgb(255, 242, 121);
     color: #ff2a2a;
     padding: 20px 20px;
+}
+
+.longtitle{
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
 }
