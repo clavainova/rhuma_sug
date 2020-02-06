@@ -15,7 +15,7 @@ $thisUser = new Utilisateur($email, "", $hash);
 $conn = getConnection();
 
 
-$results = fetchData($pdo);
+$results = fetchData($pdo, "Clients");
 foreach ($results as $value) {
     if (($value["username"] == $thisUser->getEmail())&&($value["hash"] == $thisUser->getHash())) {
         print("verified");

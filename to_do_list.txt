@@ -1,7 +1,3 @@
 - inscription
 - settings html
-- fill db products table
-- read from db for loading things on:
-	>produits
-	>settings
--basket building and cookies
+- basket building and cookies

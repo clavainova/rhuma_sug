@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <?php
-    include_once "classes/utilisateur.php";
-    include_once COMPONENTS . '/head.php';
-    ?>
+<?php
+include_once "account_management/functions.php";
+include_once "classes/utilisateur.php";
+include_once COMPONENTS . '/head.php';
+?>
 
 <body>
     <?php

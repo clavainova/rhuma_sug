@@ -29,7 +29,7 @@ function isJustLetters($str)
 //returns: bool
 function checkUnique($pdo, $thisUser)
 {
-    $results = fetchData($pdo);
+    $results = fetchData($pdo, "Clients");
     foreach ($results as $value) {
         if ($value["email"] == $thisUser->getEmail()) {
             return false;
@@ -102,22 +102,20 @@ function getConnection()
 
 //fetch the clients table
 //returns: associative array containing clients table
-function fetchData($pdo)
+function fetchData($pdo, $table)
 {
-    $stmt = $pdo->prepare("SELECT * FROM `Clients`");
+    $stmt = $pdo->prepare("SELECT * FROM " .$table);
     $stmt->execute();
     //fetch results
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
-    //without argument in brackets, returns parent table
-    //var_dump($results);
 }
 
 //fetch a specific user based on a data point
 //returns a new client object
 function fetchSpecificUser($pdo, $index, $field)
 {
-    $users = fetchData($pdo);
+    $users = fetchData($pdo, "Clients");
     foreach ($users as $value) {
         if ($value[$index] == $field) {
             //the values are good but they're not being constructed in the object
@@ -235,3 +233,4 @@ function redirect($url)
 {
     header("Location: " . $url);
 }
+?>
