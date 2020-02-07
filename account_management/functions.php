@@ -40,7 +40,7 @@ function checkUnique($pdo, $thisUser)
 {
     $results = fetchData($pdo, "Clients");
     foreach ($results as $value) {
-        if ($value["email"] == $thisUser->getEmail()) {
+        if ($value["email"] == $thisUser->__get("email")) {
             return false;
         }
     }
@@ -94,7 +94,7 @@ function getConnection()
 {
     //connect to server
     try {
-        $conn = new PDO(
+        $pdo = new PDO(
             "mysql:host=localhost;dbname=rhumsug;port=3306",
             "clavain",
             "",
@@ -106,14 +106,14 @@ function getConnection()
         //if connection fails
         return false;
     }
-    return $conn;
+    return $pdo;
 }
 
 //fetch the clients table
 //returns: associative array containing clients table
 function fetchData($pdo, $table)
 {
-    $stmt = $pdo->prepare("SELECT * FROM " .$table);
+    $stmt = $pdo->prepare("SELECT * FROM " . $table);
     $stmt->execute();
     //fetch results
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -142,23 +142,21 @@ function fetchSpecificUser($pdo, $index, $field)
 //************WIP***********************************/
 //add a user to the database
 //takes one connection and one user object
-function addUser($conn, $user)
+function addUser($pdo, $user)
 {
-    if ($stmt = $conn->prepare('INSERT INTO Clients (nom,password) VALUES (?,?)')) {
-        //preparing statement bind param
-        $stmt->bind_param('ss', $user, $pass);
-        //statements bound,executing statement
-        $stmt->execute();
-        //executed statement
-        // sendEmail($email);
+    ($stmt = "INSERT INTO Clients (email,password,hash) VALUES (?,?,?)");
+
+    if (!$pdo->prepare($stmt)->execute([$user->__get("email"), $user->__get("password"), $user->__get("hash")])) {
+        return false;
+        //print("preparation failed" . htmlspecialchars($pdo->error));
     } else {
-        die("preparation failed" . htmlspecialchars($conn->error));
+        return true;
     }
 }
 
 //send verification email with corresponding hash
-//not integrated rn
-function sendEmail($thisUser){
+function sendEmail($thisUser)
+{
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
@@ -168,16 +166,16 @@ function sendEmail($thisUser){
     $mail->SMTPSecure = "tls";
     $mail->Port       = 587;
     $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = "clavainova@gmail.com";
+    $mail->Username   = "rhuma.sug@gmail.com";
     $mail->Password   = "";
 
     $mail->IsHTML(true);
-    $mail->AddAddress($thisUser->getEmail(), "recipient-name");
-    $mail->SetFrom("clavainova@gmail.com", "from-name");
+    $mail->AddAddress($thisUser->__get("email"), "New Client");
+    $mail->SetFrom("rhuma.sug@gmail.com", "Rhuma Sug");
     // $mail->AddReplyTo("clavainova@gmail.com", "reply-to-name");
     // $mail->AddCC("clavainova@gmail.com", "cc-recipient-name");
     $mail->Subject = "Confirmation for your account";
-    $content = "Dear customer,<br><br>Thank you for registering with Rhuma Sug with the following personal data.<br>Email: " . $thisUser->getEmail() . "<br>Password: " . $thisUser->getPassword() . "<br><a href='/var/www/html/progression/5.4_Formulaires_PHP/inscription/verification.php?email=" . $thisUser->email . "&hash=" . $thisUser->hash . "'>Click on this link to verify your email.</a>";
+    $content = "Dear customer,<br><br>Thank you for registering with Rhuma Sug with the following personal data.<br>Email: " . $thisUser->__get("email") . "<br>Password: " . $thisUser->__get("password") . "<br><a href='http://localhost/RhumaSug/account_management/verification.php?email=" . $thisUser->__get("email") . "&hash=" . $thisUser->__get("hash") . "'>Click on this link to verify your email.</a>";
     $mail->MsgHTML($content);
     if (!$mail->Send()) {
         return false;
@@ -241,4 +239,3 @@ function redirect($url)
 {
     header("Location: " . $url);
 }
-?>

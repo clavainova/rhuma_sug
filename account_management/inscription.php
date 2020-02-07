@@ -3,46 +3,38 @@ include "../classes/utilisateur.php";
 include "sessionstart.php"; //try to start sesison if not already running
 require "functions.php"; //functions
 
-//check user and pass are set
+$error = false;
+$notif = false;
+
+//verification
 if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]) || $_POST["pass"] == "")) {
-    //if nothing entered or fields incomplete, redirect back to the login page
     $error = 101; //incomplete fields
+} else if ($_POST["agreetc"] == null || $_POST["agreetc"] == 'off') {
+    $error = 110; //did not agree to t&c
+} else if (($_POST["email"] !== $_POST["emailconfirm"]) || ($_POST["pass"] !== $_POST["passconfirm"])) {
+    $error = 104; //mismatched tokens - entered passwords or emails don't match
+} elseif (!isEmailValid($_POST["email"]) && !isPassValid($thisUser->$_POST["pass"])) {
+    $error = 108; //invalid email or password
 } else {
-    $_SESSION["email"] = $_POST["email"];
-    $_SESSION["pass"] = $_POST["pass"];
-    $hash = getHash();
-    $thisUser = new Utilisateur($_SESSION["email"], $_SESSION["pass"], $hash);
-    print ("session variables set. <br><b>user:</b> ") . $_SESSION["email"] . "<br><b>pass:</b> " . $_SESSION["pass"] . "<br>";
-    //now we know that they exist, check if valid
-    if (isEmailValid($thisUser->__get("email")) && isPassValid($thisUser->__get("password"))) {
-        print("validated<br>");
-        //if valid establish connection to db
-        $conn = getConnection();
-        if (checkUnique($conn, $thisUser)) {
-            print("email unique");
-            if (addUser($conn, $thisUser)) {
-                //now send them an email
-                if (sendEmail($thisUser)) {
-                    $notif = "Successful registration. You will recieve a confirlation email shortly.";
-                } else {
-                    $error = 202; //sending email failed
-                }
-            } else {
-                $error = 201; //failed to push to database
-            }
-        } else {
-            print("email taken");
-        }
+    //done all the offline validation, time to start database-related validation
+    $conn = getConnection();     //establish connection to db
+    $hash = getHash();           //get a hash
+    //make the user object
+    $thisUser = new Utilisateur($_POST["email"], $_POST["pass"], $hash);
+    if (!checkUnique($conn, $thisUser)) {
+        $error = 109; //email already in use
+    } else if (!addUser($conn, $thisUser)) {
+        $error = 201; //failed to push to database
+    } else if (!sendEmail($thisUser)) {
+        $error = 202; //sending email failed
     } else {
-        print("validation failed");
-        //if validation fails, return to login page
-        // - display message here?
+        $notif = "Successful registration. You will recieve a confirmation email shortly. Click on the link within to complete registraion.";
     }
 }
 
 if ($error) {
     $_SESSION["error"] = $error;
-} else if($notif){
+} else if ($notif) {
     $_SESSION["notif"] = $notif;
 }
 
