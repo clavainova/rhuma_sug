@@ -6,6 +6,8 @@ include 'vendor/phpmailer/phpmailer/src/Exception.php';
 include 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 include 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
+//import the connection data constants from an external file for security
+//no github cannot have my personal data!
 require '/var/www/html/p_config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -98,7 +100,7 @@ function getConnection()
     try {
         $pdo = new PDO(
             "mysql:host=localhost;dbname=rhumsug;port=3306",
-            "clavain",
+            constant("dbuser"),
             constant("dbpass"),
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
@@ -159,7 +161,8 @@ function addUser($pdo, $user)
 
 //takes one $pdo, one user object
 //sets the "verification" field to 1 in the database
-function verifyUser($pdo, $email){
+function verifyUser($pdo, $email)
+{
     ($stmt = "UPDATE `Clients` SET `verified` = '1' WHERE `Clients`.`email` = ? ;");
 
     if (!$pdo->prepare($stmt)->execute([$email])) {
@@ -182,7 +185,7 @@ function sendEmail($thisUser)
     $mail->SMTPSecure = "tls";
     $mail->Port       = 587;
     $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = "rhuma.sug@gmail.com";
+    $mail->Username   = constant("emailuser");
     $mail->Password   = constant("emailpass");
 
     $mail->IsHTML(true);
