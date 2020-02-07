@@ -6,6 +6,8 @@ include 'vendor/phpmailer/phpmailer/src/Exception.php';
 include 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 include 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
+require '/var/www/html/p_config.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -97,7 +99,7 @@ function getConnection()
         $pdo = new PDO(
             "mysql:host=localhost;dbname=rhumsug;port=3306",
             "clavain",
-            "",
+            constant("dbpass"),
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
         //check server connection, die if fails, return outcome: true if successful
@@ -181,7 +183,7 @@ function sendEmail($thisUser)
     $mail->Port       = 587;
     $mail->Host       = "smtp.gmail.com";
     $mail->Username   = "rhuma.sug@gmail.com";
-    $mail->Password   = "";
+    $mail->Password   = constant("emailpass");
 
     $mail->IsHTML(true);
     $mail->AddAddress($thisUser->__get("email"), "New Client");
@@ -253,4 +255,3 @@ function redirect($url)
 {
     header("Location: " . $url);
 }
-?>
