@@ -1,3 +1,22 @@
+BIG:
 - inscription
-- settings html
+	>writing/reading
+	>field verification
+	>verification email
 - basket building and cookies
+- configure .htaccess
+- connect produits to basket
+
+HTML/CSS:
+- change data/"update"
+- checkout
+- history
+- monitor current order
+
+Loading/db communication:
+- checkout
+- history
+- monitor current order
+- update personal data
+- payment method entry
+- payment method management/storage

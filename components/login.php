@@ -15,26 +15,6 @@
         <input type="text" id="email" name="email" />
         confirmez email :
         <input type="text" id="emailconfirm" name="emailconfirm" />
-        nom :
-        <input type="text" id="" name="" />
-        prenom :
-        <input type="text" id="" name="" />
-        date de naissance :
-        <input type="text" id="" name="" />
-        adresse 1 :
-        <input type="text" id="" name="" />
-        adresse 2 :
-        <input type="text" id="" name="" />
-        ville :
-        <input type="text" id="" name="" />
-        region :
-        <input type="text" id="" name="" />
-        code postale :
-        <input type="text" id="" name="" />
-        pays :
-        <input type="text" id="" name="" />
-        téléphone :
-        <input type="text" id="" name="" />
         password :
         <input type="text" id="pass" name="pass" />
         confirmez password :

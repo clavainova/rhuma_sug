@@ -1,48 +1,55 @@
 <?php
 class Utilisateur
 {
-    private $email;
-    private $password;
     //this class used to temporarily store users
     //and also to process queries which will then become users in the database
-    //****************************************************** */
-    //use polymorphism for complete/incomplete user?? 
-    //fetch rest of fields from db directly??
     //compulsory on creation
-    public function __construct($mail, $pass)
+    private $email;
+    private $password;
+    //compulsory on registration, blank by default
+    private $hash;
+    //compulsory on order
+    private $birthday;
+    private $phone;
+    private $addr1;
+    private $city;
+    private $region;
+    private $postcode;
+    private $country;
+    private $addr2; //this one's optional
+
+    //payment details here
+
+    public function __construct($mail, $pass, $hash = "")
     {
         //print("initialising, email: " . $mail . "<br>pass: " . $pass);
         $this->email = $mail;
         $this->password = $pass;
+        $this->hash = $hash;
         //print("<br>initialising 2, email: " . $this->email . "<br>pass: " . $this->password);
     }
-    /*
-    //normally part of the constructor
-    //getting lots of errors so it goes here for a bit
-        $this->hash = $hash;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        //optional
-        $this->birthday = "";
-        $this->phone = "";
-        //delivery - added with function
-        //not obligatory on creation
-        $this->addr1 = "";
-        $this->addr2 = "";
-        $this->city = "";
-        $this->region = "";
-        $this->postcode = "";
-        $this->country = "";
-        //payment details - added with function
-        //encapsulated for security
-        $this->paymentId = "";
-        */
 
-    //for testing, to see if it has values
-    function checkValues()
+    //not compulsory at time of construction
+    public function addPaymentData()
     {
-        print("printing values <br>" . var_dump($this->email));
-        print("<br>" . var_dump($this->password));
+    }
+
+    //not compulsory at time of construction
+    public function addPostageData($phone, $addr1, $city, $region, $postcode, $country, $addr2 = "")
+    {
+        $this->phone = $phone;
+        $this->addr1 = $addr1;
+        $this->addr2 = $addr2;
+        $this->city = $city;
+        $this->region = $region;
+        $this->postcode = $postcode;
+        $this->country = $country;
+    }
+
+    //compulsory when buying alcohol
+    public function addDOB($birthday)
+    {
+        $this->birthday = $birthday;
     }
 
     //ok so this seems like a huge security risk
@@ -54,25 +61,10 @@ class Utilisateur
         }
     }
 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
     public function __set($property, $value)
     {
         if (property_exists($this, $property)) {
             $this->$property = $value;
         }
-    }
-
-    //not compulsory at time of construction, but these fields are required
-    //to order things
-    public function addPaymentData()
-    {
-    }
-
-    public function addPostageData()
-    {
     }
 }

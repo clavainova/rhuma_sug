@@ -20,6 +20,8 @@ define('ROUTES',include 'config/routes.php');
 //error codes
 define('ERRORS', array(
     "200"=>"Connection with database failed (code:200)",
+    "201"=>"Failed to write to database (code:201)",
+    "202"=>"Failed to send confirmation email (code:202)",
     "101"=>"One or more fields incomplete (code:101)",
     "102"=>"Account with that email does not exist (code:102)",
     "103"=>"Password entered incorrectly (code:103)",

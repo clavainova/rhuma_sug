@@ -1,5 +1,14 @@
 <?php
 
+//for email sending
+include_once 'vendor/autoload.php';
+include 'vendor/phpmailer/phpmailer/src/Exception.php';
+include 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+include 'vendor/phpmailer/phpmailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 //***********************[GENERAL VERIFICATION]***********************//
 
 //do the two arguments match? 
@@ -130,9 +139,10 @@ function fetchSpecificUser($pdo, $index, $field)
     return false;
 }
 
+//************WIP***********************************/
 //add a user to the database
-//currently lacking several required arguments -- incomplete
-function addUser($conn, $user, $pass)
+//takes one connection and one user object
+function addUser($conn, $user)
 {
     if ($stmt = $conn->prepare('INSERT INTO Clients (nom,password) VALUES (?,?)')) {
         //preparing statement bind param
@@ -148,8 +158,7 @@ function addUser($conn, $user, $pass)
 
 //send verification email with corresponding hash
 //not integrated rn
-/*
-function sendVerificationEmail($thisUser){
+function sendEmail($thisUser){
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
@@ -168,15 +177,14 @@ function sendVerificationEmail($thisUser){
     // $mail->AddReplyTo("clavainova@gmail.com", "reply-to-name");
     // $mail->AddCC("clavainova@gmail.com", "cc-recipient-name");
     $mail->Subject = "Confirmation for your account";
-    $content = "Dear customer,<br><br>Thank you for registering with 5.4_Formulaires_PHP with the following personal data.<br>Email: " . $thisUser->getEmail() . "<br>Password: " . $thisUser->getPassword() . "<br><a href='/var/www/html/progression/5.4_Formulaires_PHP/inscription/verification.php?email=" . $thisUser->email . "&hash=" . $thisUser->hash . "'>Click on this link to verify your email.</a>";
+    $content = "Dear customer,<br><br>Thank you for registering with Rhuma Sug with the following personal data.<br>Email: " . $thisUser->getEmail() . "<br>Password: " . $thisUser->getPassword() . "<br><a href='/var/www/html/progression/5.4_Formulaires_PHP/inscription/verification.php?email=" . $thisUser->email . "&hash=" . $thisUser->hash . "'>Click on this link to verify your email.</a>";
     $mail->MsgHTML($content);
     if (!$mail->Send()) {
-        echo "Error while sending Email.";
+        return false;
     } else {
-        echo "Email sent successfully";
+        return true;
     }
 }
-*/
 
 //***********************[MISC]***********************//
 
@@ -187,7 +195,7 @@ function getHash()
     return md5(rand(0, 1000));
 }
 
-//logout: unset cookies, destroy session, redirect to index
+//logout: unset cookies, destroy session
 //no return
 function logout()
 {

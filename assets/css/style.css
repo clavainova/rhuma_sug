@@ -151,12 +151,19 @@ footer {
     grid-template-rows: 1fr;
 }
 
-.error{
+.error, .notif{
     left: 50px;
     text-align: center;
+    padding: 20px 20px;
+}
+.error{
     background: rgb(255, 242, 121);
     color: #ff2a2a;
-    padding: 20px 20px;
+}
+
+.notif{
+    background: rgb(121, 255, 210);
+    color: #000000;
 }
 
 .longtitle{

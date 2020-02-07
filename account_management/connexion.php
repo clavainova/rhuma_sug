@@ -17,7 +17,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
     $pdo = getConnection();
     $user = fetchSpecificUser($pdo, "email", $_SESSION["email"]);
     if (($user !== false)) {
-        if ($user->getPassword() == $_SESSION["pass"]) {
+        if ($user->__get("password") == $_SESSION["pass"]) {
             //login successful
             //add remember me cookie if relevant
             if ($_POST["remember_me"] == '1' || $_POST["remember_me"] == 'on') {
@@ -25,7 +25,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "")
                 setcookie('email', $_SESSION["email"], time() + 3600);
                 setcookie('password', $_SESSION["pass"], time() + 3600);
             }
-            //it's finished, was successful
+            $_SESSION["notif"] = "Login successful.";
             session_write_close();
         } else {
             print("wrong pass");
