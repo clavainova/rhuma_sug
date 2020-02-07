@@ -7,8 +7,7 @@ $error = false; //this is where we store the error code if there is one
 //should probably return it and display it somehow
 
 if ((!isset($_POST["email"]) || $_POST["email"] == "")
-    || (!isset($_POST["pass"]) || $_POST["pass"] == "")
-) {
+    || (!isset($_POST["pass"]) || $_POST["pass"] == "")) {
     $error = 101; //incomplete fields
 } else {
     $_SESSION["email"] = $_POST["email"];

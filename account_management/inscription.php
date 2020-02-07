@@ -39,3 +39,4 @@ if ($error) {
 }
 
 redirect("http://localhost/RhumaSug/index.php?page=settings"); //pass in settings homepage
+?>

@@ -1,8 +1,5 @@
 BIG:
-- inscription
-	>writing/reading
-	>field verification
-	>verification email
+- hash passwords in database
 - basket building and cookies
 - configure .htaccess
 - connect produits to basket

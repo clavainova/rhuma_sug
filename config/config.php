@@ -32,5 +32,5 @@ define('ERRORS', array(
     "200" => "Connection with database failed (code:200)",
     "201" => "Failed to write to database (code:201)",
     "202" => "Failed to send confirmation email (code:202)",
-    "300" => "URL tampering - entered records did not match the database (code:300)"
+    "300" => "Records in the URL did not match the database (code:300)"
 ));

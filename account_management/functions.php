@@ -57,7 +57,7 @@ function isEmailValid($email)
     return false;
 }
 
-//is valid password?
+//is valid password? -- current does not work
 //returns: bool
 function isPassValid($pass)
 {
@@ -104,6 +104,7 @@ function getConnection()
         //print(json_encode(array('outcome' => true)) . "<br>");
     } catch (PDOException $ex) {
         //if connection fails
+        $_SESSION["error"] = 200;
         return false;
     }
     return $pdo;
@@ -147,6 +148,19 @@ function addUser($pdo, $user)
     ($stmt = "INSERT INTO Clients (email,password,hash) VALUES (?,?,?)");
 
     if (!$pdo->prepare($stmt)->execute([$user->__get("email"), $user->__get("password"), $user->__get("hash")])) {
+        return false;
+        //print("preparation failed" . htmlspecialchars($pdo->error));
+    } else {
+        return true;
+    }
+}
+
+//takes one $pdo, one user object
+//sets the "verification" field to 1 in the database
+function verifyUser($pdo, $email){
+    ($stmt = "UPDATE `Clients` SET `verified` = '1' WHERE `Clients`.`email` = ? ;");
+
+    if (!$pdo->prepare($stmt)->execute([$email])) {
         return false;
         //print("preparation failed" . htmlspecialchars($pdo->error));
     } else {
@@ -239,3 +253,4 @@ function redirect($url)
 {
     header("Location: " . $url);
 }
+?>
