@@ -10,3 +10,4 @@ return array(
     "update"=>"update.php",
     "404" => "404.php"
 );
+?>

@@ -34,3 +34,4 @@ define('ERRORS', array(
     "202" => "Failed to send confirmation email (code:202)",
     "300" => "Records in the URL did not match the database (code:300)"
 ));
+?>

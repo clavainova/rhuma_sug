@@ -1,8 +1,8 @@
 BIG:
 - hash passwords in database
-- basket building and cookies
+[in progress] basket building and cookies
+[in progress] connect produits to basket
 - configure .htaccess
-- connect produits to basket
 
 HTML/CSS:
 - change data/"update"
@@ -15,5 +15,6 @@ Loading/db communication:
 - history
 - monitor current order
 - update personal data
+- address entry/addition
 - payment method entry
 - payment method management/storage

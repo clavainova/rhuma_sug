@@ -52,3 +52,4 @@ class Router
     return $link; 
     }
 }
+?>

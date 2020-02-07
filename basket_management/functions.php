@@ -13,3 +13,4 @@ function addToBasket($productId, $quantity)
     //write changes to cookie
     setcookie('basket', $basket, time() + $expire);
 }
+?>

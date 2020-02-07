@@ -14,3 +14,5 @@ $autoloader->register();
 
 //instanciation du kernel (lance l'application)
 $kernel = new Kernel();
+
+?>
