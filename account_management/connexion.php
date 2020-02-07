@@ -1,10 +1,11 @@
 <?php
+//these if/else nestings could use cleaning
+
 include "functions.php";
 include "sessionstart.php";
 include "../classes/utilisateur.php";
 
-$error = false; //this is where we store the error code if there is one
-//should probably return it and display it somehow
+$error = false; 
 
 if ((!isset($_POST["email"]) || $_POST["email"] == "")
     || (!isset($_POST["pass"]) || $_POST["pass"] == "")) {
