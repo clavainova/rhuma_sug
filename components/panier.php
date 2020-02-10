@@ -1,8 +1,3 @@
-<?php
-include "../classes/basket.php";
-$basket = new Basket();
-?>
-
 <h2>Panier</h2>
 
 <section>

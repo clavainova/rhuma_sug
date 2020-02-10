@@ -1,6 +1,7 @@
 <?php
 //this class manages the basket
 //it stores data in cookies instead of locally and then interprets that data
+//it stores them as a long string, like id!quantity,id!quantity,id!quantity
 class Basket
 {
     //searches relevant cookie to find the basket, converts it to an array, 

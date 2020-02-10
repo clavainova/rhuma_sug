@@ -2,9 +2,6 @@
 
 
     <?php
-    //add basket class
-    include "../classes/basket.php";
-    $basket = new Basket();
     
     //load each product into the page from the database
     $pdo = getConnection();
