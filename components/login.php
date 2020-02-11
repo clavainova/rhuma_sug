@@ -1,5 +1,5 @@
     <h2>Connexion</h2>
-    <form action="account_management/connexion.php" method="POST">
+    <form class="connexion" action="account_management/connexion.php" method="POST">
         email :
         <input type="text" id="email" name="email" />
         password :
@@ -10,7 +10,7 @@
     </form>
 
     <h2>S'inscrire</h2>
-    <form action="account_management/inscription.php" method="POST">
+    <form class="connexion" action="account_management/inscription.php" method="POST">
         email :
         <input type="text" id="email" name="email" />
         confirmez email :
@@ -23,5 +23,5 @@
         J'accepte les termes et conditions de RhumaSug
         <input type="submit" name="submit" value="soumettre" />
         <p>Tous les champs sont obligatoires pour acheter de l'alcool. Date de naissance non requise pour l'achat de sucre.
-</p>
+        </p>
     </form>

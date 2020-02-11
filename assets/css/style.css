@@ -53,25 +53,25 @@ article {
     text-align: center;
 }
 
-article div {
+.produit{
     padding: 1vw 1vw;
     margin: 2.5vw 2.5vw;
     border-radius: 15px;
     background-color: #EEEEEE;
 }
 
-article div img {
+.produit img{
     width: 20vw;
     height: 20vw;
     border-radius: 3px;
     object-fit: cover;
 }
 
-article div p {
+.produit p{
     font-style: oblique;
 }
 
-article div button {
+button {
     float: right;
     background-color: #333333;
     color: #F2F2F2;
@@ -115,7 +115,7 @@ section article img {
     width: 10vw;
 }
 
-form {
+.connexion {
     margin-left: 10vw;
     margin-right: 10vw;
     margin-top: 5vh;
@@ -131,11 +131,11 @@ form {
     grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-form p{
+.connexion p {
     margin-left: 20px;
 }
 
-input{
+input {
     max-height: 1.5em;
 }
 
@@ -145,29 +145,53 @@ footer {
     padding: 20px 20px;
 }
 
-.three-col{
+.three-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
 }
 
-.error, .notif{
+.error, .notif {
     left: 50px;
     text-align: center;
     padding: 20px 20px;
 }
-.error{
+
+.error {
     background: rgb(255, 242, 121);
     color: #ff2a2a;
 }
 
-.notif{
+.notif {
     background: rgb(121, 255, 210);
     color: #000000;
 }
 
-.longtitle{
+.longtitle {
     width: 100%;
     text-align: center;
     margin-left: 0;
+}
+
+.highlightbox {
+    background: #F2F2F2;
+    padding-left: 12vw;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    font-size: 1.5em;
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: 1fr 2fr;
+}
+
+.highlightbox>h3, .highlightbox>p {
+    display: inline-block;
+}
+
+.highlightbox>h3 {
+    text-align: right;
+}
+
+.underline {
+    text-decoration: underline;
 }
