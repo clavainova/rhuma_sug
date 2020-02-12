@@ -53,10 +53,9 @@ class Basket
         $newItems = array();
         foreach ($items as $value) {
             if (($value[0] == $id) && ($value[1] == $quantity)) { //should it be removed?
-                break; //skip this item
+                continue; //skip this item
             }
-            //if you haven't skipped
-            array_push($newItems, $value);
+                array_push($newItems, $value);
         }
         //write the new array (without item removed) to cookies
         $this->writeToCookie($newItems);
@@ -66,14 +65,18 @@ class Basket
     //accepts an array
     public function writeToCookie($arr)
     {
-        $arr = implode(("!" || ","), $arr, 99); //turns array into string
-        setcookie('basket', $arr, time() + $this->expiry, "/");
+        $query = "";
+        //add each element in the array to a string
+        foreach ($arr as $item) {
+            $query .= implode("!", $item) . ","; //add a comma to separate items
+        }
+        setcookie('basket', $query, time() + $this->expiry, "/");
         //stores new string over old cookie
     }
 
     //sends you to the page that destroys the basket which then instantly redirects you to the homepage
     public function destroyBasket()
     {
-        setcookie("basket", "", 1, "../classes/basket.php");
+        $this->writeToCookie("");
     }
 }

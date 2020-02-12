@@ -1,10 +1,5 @@
-need fixing:
-- empty basket button - right now does nothing
-- remove item button - right now deletes every item
-
 BIG:
 - hash passwords in database
-[in progress] basket building and cookies
 - configure .htaccess
 - calculate postage??
 

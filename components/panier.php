@@ -28,7 +28,7 @@
             <article>
                 <img src="<?php print("assets/img/" . $product->__get("img_url")); ?>">
                 <div>
-                    <h1><?php print($product->__get("name")); ?>"</h1>
+                    <h1><?php print($product->__get("name")); ?></h1>
                     <p>PPU: <br>
                         Quantité: <?php print($item[1]); //quantity in cookie not db 
                                     $totalQuantity += $item[1]; //increment total quantity
