@@ -1,5 +1,5 @@
 BIG:
-- hash passwords in database
+- hash passwords & payment details in database
 - configure .htaccess
 - calculate postage??
 
