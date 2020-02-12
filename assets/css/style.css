@@ -53,6 +53,14 @@ article {
     text-align: center;
 }
 
+.whitebox{
+    background-color: rgb(238, 238, 238);
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
 .produit{
     padding: 1vw 1vw;
     margin: 2.5vw 2.5vw;
@@ -104,6 +112,10 @@ section article div {
     text-align: left;
     background: none;
     padding-top: 2vw;
+}
+
+article div h1{
+    text-align: center;
 }
 
 section article img {

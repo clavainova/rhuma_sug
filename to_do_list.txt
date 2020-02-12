@@ -1,14 +1,14 @@
 BIG:
 - hash passwords in database
 [in progress] basket building and cookies
-[in progress] connect produits to basket
 - configure .htaccess
+- calculate postage??
 
 HTML/CSS:
 - change data/"update"
 - checkout
 - history
-- panier total box
+- panier total box (beautify)
 - monitor current order
 
 Loading/db communication:
