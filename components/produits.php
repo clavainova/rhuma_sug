@@ -1,5 +1,4 @@
 <article>
-
     <?php
     //load each product into the page from the database
     $pdo = getConnection();
@@ -27,7 +26,6 @@
                 <?php endfor; ?>
             </select>
             <input style="display:none;" name="id" id="id" value="<?php print($value["product_id"]); ?>" />
-
             <input type="submit" name="submit" value="submit" />
         </form>
     <?php
