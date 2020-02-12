@@ -51,6 +51,11 @@ class Controller
         $this->render('page200.php');
     }
 
+    public function checkout()
+    {
+        $this->render('checkout.php');
+    }
+
     private function render($template,$params=null)
     {
         //transforme le tableau $params en variables portant le nom des clés du tableau

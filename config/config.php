@@ -32,6 +32,10 @@ define('ERRORS', array(
     "200" => "Connection with database failed (code:200)",
     "201" => "Failed to write to database (code:201)",
     "202" => "Failed to send confirmation email (code:202)",
-    "300" => "Records in the URL did not match the database (code:300)"
+    "300" => "Records in the URL did not match the database (code:300)",
+    "500" => "Basket empty (code:500)",
+    "501" => "You are not logged in, please log in below or create an account (error:501)",
+    "502" => "One or more delivery fields incomplete, <a href='http://localhost/RhumaSug/index.php?page=update'>click here to add them</a> (code:502)",
+    "503" => "Invalid payment details (code:503)"
 ));
 ?>

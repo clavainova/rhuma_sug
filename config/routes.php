@@ -8,6 +8,7 @@ return array(
     "history"=>"history.php",
     "tracking"=>"tracking.php",
     "update"=>"update.php",
-    "404" => "404.php"
+    "404" => "404.php",
+    "checkout" => "checkout.php"
 );
 ?>

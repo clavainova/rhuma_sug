@@ -1,6 +1,6 @@
 <h2 class="longtitle">Update your personal details</h2>
 
-<form class="connexion"  action="account management/inscription.php" method="POST">
+<form class="connexion"  action="" method="POST">
 <h1>Delivery </h1><h1>information</h1>
     nom :
     <input type="text" id="" name="" />

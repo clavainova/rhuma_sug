@@ -205,6 +205,13 @@ footer {
     text-align: right;
 }
 
+.highlightbox-margin {
+    margin: 5vw 5vw;
+    padding: 2.5vw 2.5vw;
+    background: #F2F2F2;
+    border-radius: 3px;
+}
+
 .underline {
     text-decoration: underline;
 }

@@ -61,7 +61,7 @@
     <form style="text-align:right;" action="basket_management/destroyBasket.php" method="POST">
         <input class="standalone-button-a" type="submit" name="submit" value="empty entire basket" />
     </form>
-    <form action="" method="POST">
+    <form action="http://localhost/RhumaSug/index.php?page=checkout" method="POST">
         <input class="standalone-button-b" type="submit" name="submit" value="proceed to checkout" />
     </form>
 </div>
