@@ -4,6 +4,8 @@
 //it stores them as a long string, like id!quantity,id!quantity,id!quantity
 class Basket
 {
+    public $expiry = 7776000; //how long the cookie lasts -- a month in this case, or 60 * 60 * 24 * 90 hours 
+
     //searches relevant cookie to find the basket, converts it to an array, 
     //returns array of basket items OR false if it's empty
     public function getBasket()
@@ -30,17 +32,16 @@ class Basket
     //add something + quantity to the basket
     public function addToBasket($productId, $quantity)
     {
-        $expire = 28; // expires in one month
         //if there's nothing in the basket, make the cookie
         if (!isset($_COOKIE["basket"])) {
-            setcookie('basket', "", time() + $expire, "/");
+            setcookie('basket', "", time() + $this->expiry, "/");
         }
         //recuperate the current basket 
         $basket = $_COOKIE["basket"];
         //add the new item
         $basket .= $productId . "!" . $quantity . ",";
         //write changes to cookie
-        setcookie('basket', $basket, time() + $expire, "/");
+        setcookie('basket', $basket, time() + $this->expiry, "/");
     }
 
     //remove a single item from the array
@@ -66,17 +67,13 @@ class Basket
     public function writeToCookie($arr)
     {
         $arr = implode(("!" || ","), $arr, 99); //turns array into string
-        $_COOKIE["basket"] = $arr; //stores new string over old cookie
+        setcookie('basket', $arr, time() + $this->expiry, "/");
+        //stores new string over old cookie
     }
 
     //sends you to the page that destroys the basket which then instantly redirects you to the homepage
     public function destroyBasket()
     {
-?>
-        <script>
-            window.location.href = "http://localhost/RhumaSug/basket_management/destroyBasket.php";
-        </script>
-<?php
+        setcookie("basket", "", 1, "../classes/basket.php");
     }
 }
-?>

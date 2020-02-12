@@ -1,7 +1,7 @@
 <?php
 //destroy the basket
-if (isset($_COOKIE["basket"])) {
-        setcookie('basket', "");
-}
+include "../classes/basket.php";
+$basket = new Basket();
+$basket->destroyBasket();
 //back to the homepage
-header("Location: http://localhost/RhumaSug/index.php?page=panier"); 
+header("Location: http://localhost/RhumaSug/index.php?page=panier");
