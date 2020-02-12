@@ -1,7 +1,6 @@
 <article>
 
     <?php
-
     //load each product into the page from the database
     $pdo = getConnection();
     //if there's no connection show error
@@ -18,17 +17,18 @@
             <p><?php print($value["product_description"]); ?></p>
             <p><?php print($value["unit_price"]); ?>€</p>
             Quantité:
-            <select>
+            <select name="quantity" id="quantity" value="">
                 <?php
                 //display a drop down menu with the number of units in stock
                 for ($i = 0; $i < $value["units_in_stock"]; $i++) :
                     //add 1 to each value shown because it should start at 1 not 0
-                ?>< <option value="<?php print($i + 1); ?>" name="quantity" id="quantity">
-                        <?php print($i + 1); ?>
-                        </option>
-                    <?php endfor; ?>
+                ?>
+                    <option value="<?php print($i + 1); ?>"><?php print($i + 1); ?></option>
+                <?php endfor; ?>
             </select>
-            <input type="submit" name="<?php print($value["product_id"]); ?>" id="id" value="submit" />
+            <input style="display:none;" name="id" id="id" value="<?php print($value["product_id"]); ?>" />
+
+            <input type="submit" name="submit" value="submit" />
         </form>
     <?php
     endforeach;

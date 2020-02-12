@@ -114,8 +114,8 @@ function getConnection()
     return $pdo;
 }
 
-//fetch the clients table
-//returns: associative array containing clients table
+//fetch a specific table
+//returns: associative array containing the specific table
 function fetchData($pdo, $table)
 {
     $stmt = $pdo->prepare("SELECT * FROM " . $table);
@@ -123,6 +123,20 @@ function fetchData($pdo, $table)
     //fetch results
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
+}
+
+//fetch a product
+//returns the specific product in a produit object or false if it doesn't exist
+function fetchSpecificProduct($productid)
+{
+    $pdo = getConnection();
+    $products = fetchData($pdo, "Products");
+    foreach ($products as $product) {
+        if($product["product_id"] == $productid){
+            return new Produit($product["product_id"], $product["product_name"], $product["product_description"], $product["unit_price"], $product["unit_weight"], $product["img_url"]);
+        }
+    }
+    return false;
 }
 
 //fetch a specific user based on a data point
@@ -144,7 +158,6 @@ function fetchSpecificUser($pdo, $index, $field)
     return false;
 }
 
-//************WIP***********************************/
 //add a user to the database
 //takes one connection and one user object
 function addUser($pdo, $user)
