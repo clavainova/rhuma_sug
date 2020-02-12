@@ -53,7 +53,7 @@ article {
     text-align: center;
 }
 
-.whitebox{
+.whitebox {
     background-color: rgb(238, 238, 238);
     margin-top: 10vh;
     margin-bottom: 10vh;
@@ -61,21 +61,21 @@ article {
     padding-bottom: 5vh;
 }
 
-.produit{
+.produit {
     padding: 1vw 1vw;
     margin: 2.5vw 2.5vw;
     border-radius: 15px;
     background-color: #EEEEEE;
 }
 
-.produit img{
+.produit img {
     width: 20vw;
     height: 20vw;
     border-radius: 3px;
     object-fit: cover;
 }
 
-.produit p{
+.produit p {
     font-style: oblique;
 }
 
@@ -114,7 +114,7 @@ section article div {
     padding-top: 2vw;
 }
 
-article div h1{
+article div h1 {
     text-align: center;
 }
 
@@ -169,14 +169,16 @@ footer {
     padding: 20px 20px;
 }
 
-.error {
-    background: rgb(255, 242, 121);
+.error, .standalone-button-a {
+    background: rgb(255, 244, 146);
     color: #ff2a2a;
+    border: 2px solid rgb(80, 77, 49);
 }
 
-.notif {
-    background: rgb(121, 255, 210);
+.notif, .standalone-button-b {
+    background: rgb(158, 255, 223);
     color: #000000;
+    border: 2px solid rgb(49, 80, 70);
 }
 
 .longtitle {
@@ -187,13 +189,12 @@ footer {
 
 .highlightbox {
     background: #F2F2F2;
-    padding-left: 12vw;
     padding-top: 2.5vh;
     padding-bottom: 2.5vh;
     font-size: 1.5em;
     display: grid;
     grid-column-gap: 2em;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .highlightbox>h3, .highlightbox>p {
@@ -206,4 +207,12 @@ footer {
 
 .underline {
     text-decoration: underline;
+}
+
+.standalone-button-a, .standalone-button-b {
+    color: #333333;
+    padding: 10px 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    min-height: 2.5em;
 }

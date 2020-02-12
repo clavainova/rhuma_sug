@@ -1,9 +1,5 @@
 <h2>Panier</h2>
 
-<form action="basket_management/destroyBasket.php" method="POST">
-    <input type="submit" name="submit" value="empty entire basket" />
-</form>
-
 <section>
 
     <?php
@@ -57,12 +53,17 @@
     <h3>Postage:</h3>
     <p>0€00</p>
     <h3>Quantity:</h3>
-    <?php print($totalQuantity); ?>
+    <p><?php print($totalQuantity); ?></p>
     <h3>Items:</h3>
     <p><?php print($totalPrice . ".00€"); ?></p>
     <h3 class="underline">Total:</h3>
-    <p class="underline"></p>
-    <button>→</button>
+    <p class="underline"><br><br></p>
+    <form style="text-align:right;" action="basket_management/destroyBasket.php" method="POST">
+        <input class="standalone-button-a" type="submit" name="submit" value="empty entire basket" />
+    </form>
+    <form action="" method="POST">
+        <input class="standalone-button-b" type="submit" name="submit" value="proceed to checkout" />
+    </form>
 </div>
 
 </article>

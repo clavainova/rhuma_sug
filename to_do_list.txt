@@ -8,7 +8,6 @@ HTML/CSS:
 - change data/"update"
 - checkout
 - history
-- panier total box (beautify)
 - monitor current order
 
 Loading/db communication:
