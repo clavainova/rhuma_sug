@@ -1,7 +1,6 @@
 BIG:
 - hash passwords & payment details in database
 - configure .htaccess
-- calculate postage??
 
 HTML/CSS:
 - change data/"update"

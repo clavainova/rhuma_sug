@@ -7,8 +7,10 @@
 
     require "classes/basket.php";
     require "classes/produit.php";
+    include "checkout_management/checkoutFunctions.php";
     $totalPrice = 0; //to keep track of total price
     $totalQuantity = 0; //to track the total quantity
+    $totalWeight = 0; //to track the total weight of the order so we can calculate postage
     $basket = new Basket();
     $items = $basket->getBasket();
     // var_dump($_COOKIE["basket"]);
@@ -35,6 +37,7 @@
                                     ?><br>
                         Prix: <?php print($product->__get("price") . "€");
                                 $totalPrice += ($product->__get("price") * $item[1]); //increment total with price*quantity 
+                                $totalWeight += ($product->__get("weight") * $item[1]); //increment total weight with quantity
                                 ?></p>
                     <form action="basket_management/removeFromBasket.php" method="POST">
                         <input style="display:none;" type="text" id="id" name="id" value="<?php print($item[0]); ?>" />
@@ -50,14 +53,14 @@
 </section>
 
 <div class="highlightbox">
-    <h3>Postage:</h3>
-    <p>0€00</p>
+    <h3>Postage (to EU):</h3>
+    <p><?php print(calculatePostage($totalWeight)); ?>€</p>
     <h3>Quantity:</h3>
     <p><?php print($totalQuantity); ?></p>
     <h3>Items:</h3>
     <p><?php print($totalPrice . ".00€"); ?></p>
     <h3 class="underline">Total:</h3>
-    <p class="underline"><br><br></p>
+    <p class="underline"><?php print(calculatePostage($totalWeight) + $totalPrice); ?>€<br><br></p>
     <form style="text-align:right;" action="basket_management/destroyBasket.php" method="POST">
         <input class="standalone-button-a" type="submit" name="submit" value="empty entire basket" />
     </form>

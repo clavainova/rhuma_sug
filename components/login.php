@@ -18,7 +18,7 @@
         password :
         <input style="-webkit-text-security: square;" type="text" id="pass" name="pass" />
         confirmez password :
-        <input type="text" id="passconfirm" name="passconfirm" />
+        <input style="-webkit-text-security: square;" type="text" id="passconfirm" name="passconfirm" />
         <input type="checkbox" id="agreetc" name="agreetc" />
         J'accepte les termes et conditions de RhumaSug
         <input type="submit" name="submit" value="soumettre" />

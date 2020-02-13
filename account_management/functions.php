@@ -148,11 +148,10 @@ function fetchSpecificUser($pdo, $index, $field)
         if ($value[$index] == $field) {
             //the values are good but they're not being constructed in the object
             //correctly -- this is the locaion of the error
-            $user = new Utilisateur($value["email"], $value["password"]);
+            return new Utilisateur($value["email"], $value["password"]);
             //for testing:
             //print("<br>values in object when passed<br>");
             //$user->checkValues();
-            return $user;
         }
     }
     return false;

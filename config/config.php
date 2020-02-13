@@ -38,4 +38,43 @@ define('ERRORS', array(
     "502" => "One or more delivery fields incomplete, <a href='http://localhost/RhumaSug/index.php?page=update'>click here to add them</a> (code:502)",
     "503" => "Invalid payment details (code:503)"
 ));
-?>
+
+//postage rates with colissimo international
+//in euros -- range is in grams
+define('POSTAGE', array(
+    array(
+        "range" => range(0, 1, 1),
+        "eu" => "0.00",
+        "international"=> "0.00"
+    ),
+    array(
+        "range" => range(1, 500, 1),
+        "eu"=>"12.30",
+        "international"=>"24.35"
+    ),
+    array(
+        "range" => range(500, 1000, 1),
+        "eu"=>"15.20",
+        "international"=>"27.10"
+    ),
+    array(
+        "range" => range(1000, 2000, 1),
+        "eu"=>"17.20",
+        "international"=>"37.30"
+    ),
+    array(
+        "range" => range(2000, 5000, 1),
+        "eu"=>"22.00",
+        "international"=>"54.55"
+    ),
+    array(
+        "range" => range(5000, 10000, 1),
+        "eu"=>"36.30",
+        "international"=>"103.10"
+    ),
+    array(
+        "range" => ">10000",
+        "eu"=>"Need quote",
+        "international"=>"Need Quote"
+    )
+));
