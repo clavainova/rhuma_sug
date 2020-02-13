@@ -1,9 +1,12 @@
 <?php
 $error = false;
 if (!$basket->getBasket()) {
-    $error = 500; //basket is empty
+    $_SESSION["error"] = 500; //basket is empty -- error not displaying
+    header('Location: http://localhost/RhumaSug/index.php?page=panier');
+    
 } else if (!verifyLogin()) {
-    $error = 501; //not logged in
+    $_SESSION["error"] = 501; //not logged in -- error not displaying
+    header('Location: http://localhost/RhumaSug/index.php?page=settings');
 }
 //check address is complete - if not, error 502
 //check payment details are complete, if not error 503
@@ -20,6 +23,4 @@ if (!$basket->getBasket()) {
 //send errors or confirmation to the user
 if ($error) {
     $_SESSION["error"] = $error;
-    unset($_SESSION['email']);
-    unset($_SESSION['pass']);
 }

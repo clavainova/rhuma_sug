@@ -15,6 +15,19 @@
     $items = $basket->getBasket();
     // var_dump($_COOKIE["basket"]);
 
+    //this isn't working
+    if (isset($_SESSION["error"])) :
+        ?>
+            <div class="error">
+                <?php
+                print(ERRORS[$_SESSION["error"]]);
+                ?>
+            </div>
+<?php
+            //unset error
+            unset($_SESSION['error']);
+        endif;
+
     if (!$items) :
     ?>
         <article>
