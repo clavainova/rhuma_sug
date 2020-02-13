@@ -4,10 +4,10 @@
 
     <?php
     //need to calculate cumulative price for total section
-
     require "classes/basket.php";
     require "classes/produit.php";
     include "checkout_management/checkoutFunctions.php";
+
     $totalPrice = 0; //to keep track of total price
     $totalQuantity = 0; //to track the total quantity
     $totalWeight = 0; //to track the total weight of the order so we can calculate postage

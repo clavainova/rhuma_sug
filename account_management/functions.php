@@ -185,6 +185,17 @@ function verifyUser($pdo, $email)
     }
 }
 
+//takes a user, updates their address details
+function updateAddress($pdo, $email, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = ""){
+    //need to update this so it alters an existing one instead of inserting a new one
+    ($stmt = "INSERT INTO Clients (nom,prenom,addr1) VALUES (?,?,?,?,?,?,?,?,?)");
+    if (!$pdo->prepare($stmt)->execute()) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 //send verification email with corresponding hash
 function sendEmail($thisUser)
 {
