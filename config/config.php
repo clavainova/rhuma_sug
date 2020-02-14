@@ -37,8 +37,8 @@ define('ERRORS', array(
     "300" => "Records in the URL did not match the database (code:300)",
     //500-509 -> basket errors
     "500" => "Basket empty (code:500)",
-    "501" => "You are not logged in, please log in below or create an account (error:501)",
-    "502" => "One or more delivery fields incomplete, <a href='http://localhost/RhumaSug/index.php?page=update'>click here to add them</a> (code:502)",
+    "501" => "You are not logged in, please log in <a href='http://localhost/RhumaSug/index.php?page=settings'>here</a> or create an account to continue (error:501)",
+    "502" => "No address on record, please add one <a href='http://localhost/RhumaSug/index.php?page=update'>here</a> (code:502)",
     //510-519 -> payment details errors
     "510" => "Invalid payment details (code:510)",
     "511" => "Card number does not match real card (code:511)",

@@ -4,7 +4,8 @@
 //it stores them as a long string, like id!quantity,id!quantity,id!quantity
 class Basket
 {
-    public $expiry = 7776000; //how long the cookie lasts -- a month in this case, or 60 * 60 * 24 * 90 hours 
+    public $expiry = 7776000; //how long the cookie lasts 
+    // -- a month in this case, or 60 * 60 * 24 * 90 hours 
 
     //searches relevant cookie to find the basket, converts it to an array, 
     //returns array of basket items OR false if it's empty
@@ -55,7 +56,7 @@ class Basket
             if (($value[0] == $id) && ($value[1] == $quantity)) { //should it be removed?
                 continue; //skip this item
             }
-                array_push($newItems, $value);
+            array_push($newItems, $value);
         }
         //write the new array (without item removed) to cookies
         $this->writeToCookie($newItems);
@@ -77,6 +78,6 @@ class Basket
     //sends you to the page that destroys the basket which then instantly redirects you to the homepage
     public function destroyBasket()
     {
-        $this->writeToCookie("");
+        $this->writeToCookie(""); //replace the basket content with an empty string
     }
 }

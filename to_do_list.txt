@@ -1,16 +1,18 @@
+the big one --- detect who is logged in, log session properly (accross pages!)
+
 rn: function addAddressToUser()
 //^^^^^^^update/test
-- error display not working on:
-        - panier 
-        - settings 
-        - settings subsections
+- isAddressComplete();
+
 
 BIG:
 - hash passwords & payment details in database
 - configure .htaccess
+- distinguish types of postage
 
 HTML/CSS:
 - checkout
+- purchase confirmation
 - history
 - monitor current order
 - h2 longtitle needs centring

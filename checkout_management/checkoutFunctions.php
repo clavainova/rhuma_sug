@@ -1,4 +1,6 @@
 <?php
+include_once "account_management/sessionstart.php";
+
 //calculate postage, returns the value
 //reads from the POSTAGE array in config
 //is not dependent on any structure of the POSTAGE array
@@ -51,7 +53,7 @@ function isValidCard($card)
 }
 
 //check if it's a number -- used for card details
-//bit pointless since it's just using isNumeric
+//bit pointless since it's just using isNumeric -- try implementing that instead
 function isNumber($number)
 {
     if (is_numeric($number)) {
@@ -59,4 +61,11 @@ function isNumber($number)
     } else {
         return false;
     }
+}
+
+//*****************************[ADDRESS VERIFICATION]***************************//
+//!!!!!!!!!!!!!UNFINISHED
+//if the address of a user filled in?
+function isAddressComplete(){
+    return true;
 }

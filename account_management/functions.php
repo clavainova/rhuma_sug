@@ -132,7 +132,7 @@ function fetchSpecificProduct($productid)
     $pdo = getConnection();
     $products = fetchData($pdo, "Products");
     foreach ($products as $product) {
-        if($product["product_id"] == $productid){
+        if ($product["product_id"] == $productid) {
             return new Produit($product["product_id"], $product["product_name"], $product["product_description"], $product["unit_price"], $product["unit_weight"], $product["img_url"]);
         }
     }
@@ -186,9 +186,10 @@ function verifyUser($pdo, $email)
 }
 
 //takes a user, updates their address details
-function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = ""){
+function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = "")
+{
     //need to update this so it alters an existing one instead of inserting a new one
-    ($stmt = "UPDATE Clients (nom,prenom,address1,address2,city,region,postcode,country,phone) VALUES (?,?,?,?,?,?,?,?,?) WHERE `Clients`.`client_id` =".$id .";");
+    ($stmt = "UPDATE Clients (nom,prenom,address1,address2,city,region,postcode,country,phone) VALUES (?,?,?,?,?,?,?,?,?) WHERE `Clients`.`client_id` =" . $id . ";");
     if (!$pdo->prepare($stmt)->execute([$nom, $prenom, $addr1, $addr2, $ville, $region, $cp, $pays, $phone])) {
         return false;
     } else {
@@ -230,9 +231,9 @@ function sendEmail($thisUser)
 
 //generate a hash code for account verification
 //returns hash
-function getHash()
+function getHash($str)
 {
-    return md5(rand(0, 1000));
+    $str = md5($str);
 }
 
 //logout: unset cookies, destroy session
@@ -274,6 +275,13 @@ function verifyLogin()
     }
     //this point reached if no session registered OR current session doesn't match the database
     return false;
+}
+
+//returns the current user as a user object
+function getCurrentUser()
+{
+    $pdo = getConnection();
+    return fetchSpecificUser($pdo, "email", $_SESSION["email"]);
 }
 
 //probably best to combine this with the routing system

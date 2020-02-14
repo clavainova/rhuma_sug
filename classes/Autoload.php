@@ -9,7 +9,7 @@ class Autoloader{
     //register autoloader
     static function register(){
         spl_autoload_register(array(__CLASS__, 'autoload'));
-    }
+    }  
 
     /**
      * Inclut le fichier correspondant à notre classe

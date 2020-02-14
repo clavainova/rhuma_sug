@@ -3,6 +3,7 @@
 
 <?php
 include_once "account_management/functions.php";
+include_once "account_management/sessionstart.php";
 include_once "classes/utilisateur.php";
 include_once COMPONENTS . '/head.php';
 ?>

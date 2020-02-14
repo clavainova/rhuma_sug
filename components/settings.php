@@ -1,19 +1,6 @@
 <?php
 //verify that account is logged in and that the user's data matches the database
 //if not, redirect to login page 
-include "account_management/sessionstart.php";
-
-//if there's a notification, i.e. "login successful", show it and unset it
-if (isset($_SESSION["notif"])) :
-?>
-    <div class="notif">
-        <?php
-        print($_SESSION["notif"]);
-        ?>
-    </div>
-<?php
-    unset($_SESSION['notif']);
-endif;
 
 if (getConnection() == false) :
 ?>

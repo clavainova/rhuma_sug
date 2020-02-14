@@ -8,6 +8,7 @@ body {
     color: #333333;
     font-family: 'Open Sans', sans-serif;
     background-attachment: fixed;
+    overflow-x: hidden;
 }
 
 a {
@@ -185,6 +186,8 @@ footer {
     width: 100%;
     text-align: center;
     margin-left: 0;
+    padding-left: 0 !important;
+    border-radius: 0;
 }
 
 .highlightbox {
