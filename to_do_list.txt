@@ -13,6 +13,7 @@ HTML/CSS:
 - checkout
 - history
 - monitor current order
+- h2 longtitle needs centring
 
 Loading/db communication:
 - history

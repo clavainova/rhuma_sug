@@ -231,3 +231,9 @@ footer {
     background: rgb(158, 255, 223);
     color: #333333;
 }
+
+.span-note{
+    text-align: center;
+    color: #333333;
+    background: #F2F2F2;
+}
