@@ -1,5 +1,9 @@
 rn: function addAddressToUser()
-//^^^^^^^update
+//^^^^^^^update/test
+- error display not working on:
+        - panier 
+        - settings 
+        - settings subsections
 
 BIG:
 - hash passwords & payment details in database

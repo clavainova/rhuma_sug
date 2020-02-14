@@ -76,7 +76,7 @@ define('POSTAGE', array(
         "international"=>"103.10"
     ),
     array(
-        "range" => ">10000",
+        "range" => range(10000, 999999, 1),
         "eu"=>"Need quote",
         "international"=>"Need Quote"
     )

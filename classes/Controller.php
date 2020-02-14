@@ -46,11 +46,6 @@ class Controller
         $this->render('page404.php');
     }
 
-    public function page200()
-    {
-        $this->render('page200.php');
-    }
-
     public function checkout()
     {
         $this->render('checkout.php');

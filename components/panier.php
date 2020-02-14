@@ -13,20 +13,19 @@
     $totalWeight = 0; //to track the total weight of the order so we can calculate postage
     $basket = new Basket();
     $items = $basket->getBasket();
-    // var_dump($_COOKIE["basket"]);
 
     //this isn't working
     if (isset($_SESSION["error"])) :
-        ?>
-            <div class="error">
-                <?php
-                print(ERRORS[$_SESSION["error"]]);
-                ?>
-            </div>
-<?php
-            //unset error
-            unset($_SESSION['error']);
-        endif;
+    ?>
+        <div class="error">
+            <?php
+            print(ERRORS[$_SESSION["error"]]);
+            ?>
+        </div>
+    <?php
+        //unset error
+        unset($_SESSION['error']);
+    endif;
 
     if (!$items) :
     ?>
@@ -66,14 +65,23 @@
 </section>
 
 <div class="highlightbox">
-    <h3>Postage (to EU):</h3>
-    <p><?php print(calculatePostage($totalWeight)); ?>€</p>
     <h3>Quantity:</h3>
     <p><?php print($totalQuantity); ?></p>
     <h3>Items:</h3>
     <p><?php print($totalPrice . ".00€"); ?></p>
+    <h3>Postage (to EU):</h3>
+    <p><?php
+        print(calculatePostage($totalWeight));
+        if (is_numeric(calculatePostage($totalWeight))) { //add a euro sign, but only if it's a number
+            print("€");
+        } ?></p>
     <h3 class="underline">Total:</h3>
-    <p class="underline"><?php print(calculatePostage($totalWeight) + $totalPrice); ?>€<br><br></p>
+    <p class="underline"><?php
+                            if (!is_numeric(calculatePostage($totalWeight))) {
+                                print($totalPrice . "€ + quote needed for postage");
+                            } else {
+                                print((calculatePostage($totalWeight) + $totalPrice) . "€");
+                            } ?><br><br></p>
     <form style="text-align:right;" action="basket_management/destroyBasket.php" method="POST">
         <input class="standalone-button-a" type="submit" name="submit" value="empty entire basket" />
     </form>
