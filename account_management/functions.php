@@ -186,10 +186,10 @@ function verifyUser($pdo, $email)
 }
 
 //takes a user, updates their address details
-function updateAddress($pdo, $email, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = ""){
+function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = ""){
     //need to update this so it alters an existing one instead of inserting a new one
-    ($stmt = "INSERT INTO Clients (nom,prenom,addr1) VALUES (?,?,?,?,?,?,?,?,?)");
-    if (!$pdo->prepare($stmt)->execute()) {
+    ($stmt = "UPDATE Clients (nom,prenom,address1,address2,city,region,postcode,country,phone) VALUES (?,?,?,?,?,?,?,?,?) WHERE `Clients`.`client_id` =".$id .";");
+    if (!$pdo->prepare($stmt)->execute([$nom, $prenom, $addr1, $addr2, $ville, $region, $cp, $pays, $phone])) {
         return false;
     } else {
         return true;

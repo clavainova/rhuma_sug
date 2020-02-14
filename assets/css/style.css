@@ -223,3 +223,11 @@ footer {
     font-size: 1em;
     min-height: 2.5em;
 }
+
+.back-button{
+    float: left;
+    margin: 5px 5px;
+    margin-left: 5vw;
+    background: rgb(158, 255, 223);
+    color: #333333;
+}

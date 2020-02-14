@@ -36,7 +36,10 @@ define('ERRORS', array(
     "500" => "Basket empty (code:500)",
     "501" => "You are not logged in, please log in below or create an account (error:501)",
     "502" => "One or more delivery fields incomplete, <a href='http://localhost/RhumaSug/index.php?page=update'>click here to add them</a> (code:502)",
-    "503" => "Invalid payment details (code:503)"
+    "503" => "Invalid payment details (code:503)",
+    "600" => "Name contains invalid characters (only allowed letters) (code:600)",
+    "601" => "Ville or region contains invalid characters (code:601)",
+    "602" => "Phone number invalid (code:602)"
 ));
 
 //postage rates with colissimo international
