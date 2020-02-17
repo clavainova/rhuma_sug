@@ -1,26 +1,15 @@
-the big one --- detect who is logged in, log session properly (accross pages!)
-
-rn: function addAddressToUser()
-//^^^^^^^update/test
+functions that need filling or testing:
+- addAddressToUser()
 - isAddressComplete();
 
-
-BIG:
+other:
 - hash passwords & payment details in database
 - configure .htaccess
-- distinguish types of postage
-
-HTML/CSS:
+- distinguish types of postage -- eu/international
 - checkout
 - purchase confirmation
-- history
+- history -- list of orders by client id?
 - monitor current order
-- h2 longtitle needs centring
-
-Loading/db communication:
-- history
-- monitor current order
+- payment method entry
 - update personal data
 - address entry/addition
-- payment method entry
-- payment method management/storage
