@@ -1,3 +1,6 @@
+current plan:
+    -implement password hashing, hash current entries in the database
+
 functions that need filling or testing:
 - addAddressToUser()
 - isAddressComplete();

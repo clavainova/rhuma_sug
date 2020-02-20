@@ -9,20 +9,6 @@
     $totalPrice = 0; //to keep track of total price
     $totalQuantity = 0; //to track the total quantity
     $totalWeight = 0; //to track the total weight of the order so we can calculate postage
-
-
-    //this isn't working
-    if (isset($_SESSION["error"])) :
-    ?>
-        <div class="error">
-            <?php
-            print(ERRORS[$_SESSION["error"]]);
-            ?>
-        </div>
-    <?php
-        //unset error
-        unset($_SESSION['error']); //weirdly, this isn't working - error still present in $_SESSION on compte page
-    endif;
     ?>
     <h2>Panier</h2>
     <section>

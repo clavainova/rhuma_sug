@@ -11,21 +11,6 @@ require "checkout_management/verification.php"; //this includes the address form
 
 $totalPrice = $_POST["itemPrice"] + $_POST["postage"];
 //quickly calculate total 
-
-//display errors and confirmation messages
-//if there's an error, show it
-if (isset($_SESSION["error"])) :
-?>
-    <div class="error">
-        <?php
-        print(ERRORS[$_SESSION["error"]]);
-        ?>
-    </div>
-<?php
-    //unset error
-    unset($_SESSION['error']);
-endif;
-//header("Location: http://localhost/RhumaSug/index.php?page=panier");
 ?>
 
 <h2 class="longtitle">Review order</h2>

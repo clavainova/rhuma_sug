@@ -2,20 +2,20 @@
 <html lang="fr">
 
 <?php
+//functions/classes needed for site to function
 include_once "account_management/functions.php";
 include_once "account_management/sessionstart.php";
 include_once "classes/utilisateur.php";
-include_once COMPONENTS . '/head.php';
+include_once COMPONENTS . '/head.php'; //here's the css, title, etc
 ?>
 
 <body>
     <?php
-
-    include_once COMPONENTS . '/header.php';
-    include_once COMPONENTS . '/nav.php';
-    include_once COMPONENTS . '/' . $template;
-
-    include_once COMPONENTS . '/footer.php';
+    include_once COMPONENTS . '/header.php'; //banner image
+    include_once COMPONENTS . '/nav.php'; //navbar
+    include_once "config/displayNotification.php"; //displays notifications if they exist
+    include_once COMPONENTS . '/' . $template; //add the template for the page
+    include_once COMPONENTS . '/footer.php'; //footer
     ?>
 </body>
 

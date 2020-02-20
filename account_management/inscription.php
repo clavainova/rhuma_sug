@@ -18,7 +18,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
 } else {
     //done all the offline validation, time to start database-related validation
     $conn = getConnection();     //establish connection to db
-    $hash = getHash();           //get a hash
+    $hash = getHash($_POST["pass"]);           //get a hash
     //make the user object
     $thisUser = new Utilisateur($_POST["email"], $_POST["pass"], $hash);
     if (!checkUnique($conn, $thisUser)) {

@@ -2,10 +2,6 @@
     <?php
     //load each product into the page from the database
     $pdo = getConnection();
-    //if there's no connection show error
-    if ($pdo == false) {
-        redirect("http://localhost/RhumaSug/index.php?page=settings");
-    }
     $products = fetchData($pdo, "Products");
     //make a div for each product available to purchase
     foreach ($products as $value) :

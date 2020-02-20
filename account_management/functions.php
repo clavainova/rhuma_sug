@@ -230,10 +230,16 @@ function sendEmail($thisUser)
 //***********************[MISC]***********************//
 
 //generate a hash code for account verification
-//returns hash
+//returns hashed password
 function getHash($str)
 {
-    $str = md5($str);
+    return password_hash($str, PASSWORD_BCRYPT);
+}
+
+//checks if the password matches the hash
+//returns a boolean
+function passMatch($hash, $pass){
+    return password_verify($pass, $hash);
 }
 
 //logout: unset cookies, destroy session
