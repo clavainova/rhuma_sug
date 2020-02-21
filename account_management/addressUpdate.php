@@ -1,6 +1,9 @@
 <?php
 include "functions.php";
+include_once "../classes/utilisateur.php";
+$offlineuser = getCurrentUser(); //this keeps returning false???
 
+$error = false;
 //$id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2
 
 //are any of the compulsory fields incomplete?
@@ -25,12 +28,18 @@ else if(!isJustLetters($_POST["ville"])||!isJustLetters($_POST["region"])){
 }
 else{ //if passes preliminary verification
     $pdo = getConnection();
-    $user = fetchSpecificUser($pdo, "password", $_SESSION["password"]);
-    updateAddress($pdo, $user->__get("id"), $_POST["nom"],$_POST["prenom"],$_POST["addr1"],$_POST["ville"],$_POST["region"],$_POST["cp"],$_POST["country"],$_POST["phone"]);
+    $user = fetchSpecificUser($pdo, "email", $offlineuser->__get("email"));
+    if(updateAddress($pdo, $user->__get("id"), $_POST["nom"],$_POST["prenom"],$_POST["addr1"],$_POST["ville"],$_POST["region"],$_POST["cp"],$_POST["country"],$_POST["phone"])){
+        $_SESSION["notif"] = "Address updated successfully.";
+    }
+    else{
+        $error = 201; //failed to push to database
+    }
 }
 
 if ($error) {
     $_SESSION["error"] = $error;
 }
 
-//redirect("http://localhost/RhumaSug/index.php?page=update"); //pass in settings homepage
+session_write_close();
+redirect("http://localhost/RhumaSug/index.php?page=update"); //pass in settings homepage

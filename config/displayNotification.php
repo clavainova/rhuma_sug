@@ -1,5 +1,6 @@
 <?php
-//this checks the database connection and terminates the page loading if it's unavailable
+//this checks the database connection and terminates the page loading if 
+//it's unavailable
 
 //this checks session for notifications or errors and shows them to the user
 //if there are multiple it will only show the latest one of each
@@ -45,5 +46,4 @@ if (isset($_SESSION["error"])) :
 <?php
     //unset error
     unset($_SESSION['error']);
-
 endif;

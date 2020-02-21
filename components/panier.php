@@ -1,10 +1,7 @@
     <?php
     //need to calculate cumulative price for total section
-    require "classes/basket.php";
     $basket = new Basket();
     $items = $basket->getBasket();
-    require "classes/produit.php";
-    include "checkout_management/checkoutFunctions.php";
 
     $totalPrice = 0; //to keep track of total price
     $totalQuantity = 0; //to track the total quantity

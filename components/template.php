@@ -6,6 +6,9 @@
 include_once "account_management/functions.php";
 include_once "account_management/sessionstart.php";
 include_once "classes/utilisateur.php";
+include_once "classes/produit.php";
+include_once "classes/basket.php";
+include_once "checkout_management/checkoutFunctions.php";
 include_once COMPONENTS . '/head.php'; //here's the css, title, etc
 ?>
 

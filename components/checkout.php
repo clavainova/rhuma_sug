@@ -2,11 +2,8 @@
 
 
 //need to calculate cumulative price for total section
-require "classes/basket.php";
 $basket = new Basket();
 $items = $basket->getBasket();
-require "classes/produit.php";
-include "checkout_management/checkoutFunctions.php";
 require "checkout_management/verification.php"; //this includes the address form if necessary
 
 $totalPrice = $_POST["itemPrice"] + $_POST["postage"];

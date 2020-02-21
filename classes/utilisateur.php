@@ -20,11 +20,10 @@ class Utilisateur
 
     //payment details here
 
-    public function __construct($mail, $pass, $hash = "")
+    public function __construct($mail, $hash = "")
     {
         //print("initialising, email: " . $mail . "<br>pass: " . $pass);
         $this->email = $mail;
-        $this->password = $pass;
         $this->hash = $hash;
         //print("<br>initialising 2, email: " . $this->email . "<br>pass: " . $this->password);
     }

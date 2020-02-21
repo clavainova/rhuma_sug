@@ -20,7 +20,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
     $conn = getConnection();     //establish connection to db
     $hash = getHash($_POST["pass"]);           //get a hash
     //make the user object
-    $thisUser = new Utilisateur($_POST["email"], $_POST["pass"], $hash);
+    $thisUser = new Utilisateur($_POST["email"], $hash);
     if (!checkUnique($conn, $thisUser)) {
         $error = 109; //email already in use
     } else if (!addUser($conn, $thisUser)) {

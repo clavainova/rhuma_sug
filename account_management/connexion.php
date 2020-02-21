@@ -17,7 +17,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
     $user = fetchSpecificUser($pdo, "email", $_SESSION["email"]);
     if (($user == false)) {
         $error = 102; //user with that email does not exist
-    } elseif ($user->__get("password") !== $_SESSION["pass"]) {
+    } elseif (passMatch($_SESSION["pass"], $user->__get("hash"))) {
         print("wrong pass");
         $error = 103; //password entered incorrectly"
     } else {
@@ -29,7 +29,6 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
             setcookie('password', $_SESSION["pass"], time() + 3600);
         }
         $_SESSION["notif"] = "Login successful.";
-        session_write_close();
     }
 }
 
@@ -39,4 +38,5 @@ if ($error) {
     unset($_SESSION['pass']);
 }
 
+session_write_close();
 redirect("http://localhost/RhumaSug/index.php?page=settings"); //pass in settings homepage

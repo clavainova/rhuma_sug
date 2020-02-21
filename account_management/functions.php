@@ -6,6 +6,7 @@ include 'vendor/phpmailer/phpmailer/src/Exception.php';
 include 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 include 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
+
 //import the connection data constants from an external file for security
 //no github cannot have my personal data!
 require '/var/www/html/p_config.php';
@@ -148,7 +149,7 @@ function fetchSpecificUser($pdo, $index, $field)
         if ($value[$index] == $field) {
             //the values are good but they're not being constructed in the object
             //correctly -- this is the locaion of the error
-            return new Utilisateur($value["email"], $value["password"]);
+            return new Utilisateur($value["email"], $value["hash"]);
             //for testing:
             //print("<br>values in object when passed<br>");
             //$user->checkValues();
@@ -161,9 +162,9 @@ function fetchSpecificUser($pdo, $index, $field)
 //takes one connection and one user object
 function addUser($pdo, $user)
 {
-    ($stmt = "INSERT INTO Clients (email,password,hash) VALUES (?,?,?)");
+    ($stmt = "INSERT INTO Clients (email,hash) VALUES (?,?)");
 
-    if (!$pdo->prepare($stmt)->execute([$user->__get("email"), $user->__get("password"), $user->__get("hash")])) {
+    if (!$pdo->prepare($stmt)->execute([$user->__get("email"), $user->__get("hash")])) {
         return false;
         //print("preparation failed" . htmlspecialchars($pdo->error));
     } else {
@@ -189,8 +190,21 @@ function verifyUser($pdo, $email)
 function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = "")
 {
     //need to update this so it alters an existing one instead of inserting a new one
-    ($stmt = "UPDATE Clients (nom,prenom,address1,address2,city,region,postcode,country,phone) VALUES (?,?,?,?,?,?,?,?,?) WHERE `Clients`.`client_id` =" . $id . ";");
-    if (!$pdo->prepare($stmt)->execute([$nom, $prenom, $addr1, $addr2, $ville, $region, $cp, $pays, $phone])) {
+    ($stmt = "UPDATE Clients
+    SET nom = :nom, prenom = :prenom, address1 = :addr1, address2 = :addr2, city = :ville, region = :region, postcode = :cp, country = :pays, phone = :phone
+    WHERE `Clients`.`client_id` = :id");
+    if (!$pdo->prepare($stmt)->execute(array(
+        ":nom" => $nom,
+        ":prenom" => $prenom, 
+        ":addr1" => $addr1, 
+        ":addr2" => $addr2, 
+        ":ville" => $ville, 
+        ":region" => $region, 
+        ":cp" => $cp, 
+        ":pays" => $pays, 
+        ":phone" => $phone,
+        ":id" => $id
+        ))) {
         return false;
     } else {
         return true;
@@ -218,7 +232,7 @@ function sendEmail($thisUser)
     // $mail->AddReplyTo("clavainova@gmail.com", "reply-to-name");
     // $mail->AddCC("clavainova@gmail.com", "cc-recipient-name");
     $mail->Subject = "Confirmation for your account";
-    $content = "Dear customer,<br><br>Thank you for registering with Rhuma Sug with the following personal data.<br>Email: " . $thisUser->__get("email") . "<br>Password: " . $thisUser->__get("password") . "<br><a href='http://localhost/RhumaSug/account_management/verification.php?email=" . $thisUser->__get("email") . "&hash=" . $thisUser->__get("hash") . "'>Click on this link to verify your email.</a>";
+    $content = "Dear customer,<br><br>Thank you for registering with Rhuma Sug with the following personal data.<br>Email: " . $thisUser->__get("email") . "<br><a href='http://localhost/RhumaSug/account_management/verification.php?email=" . $thisUser->__get("email") . "&hash=" . $thisUser->__get("hash") . "'>Click on this link to verify your email.</a>";
     $mail->MsgHTML($content);
     if (!$mail->Send()) {
         return false;
@@ -238,7 +252,8 @@ function getHash($str)
 
 //checks if the password matches the hash
 //returns a boolean
-function passMatch($hash, $pass){
+function passMatch($hash, $pass)
+{
     return password_verify($pass, $hash);
 }
 
@@ -287,6 +302,9 @@ function verifyLogin()
 function getCurrentUser()
 {
     $pdo = getConnection();
+    if(!isset($_SESSION["email"])){
+        return fetchSpecificUser($pdo, "email", $_COOKIE["email"]);
+    }
     return fetchSpecificUser($pdo, "email", $_SESSION["email"]);
 }
 
