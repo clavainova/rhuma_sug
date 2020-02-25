@@ -17,8 +17,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
     $user = fetchSpecificUser($pdo, "email", $_SESSION["email"]);
     if (($user == false)) {
         $error = 102; //user with that email does not exist
-    } elseif (passMatch($_SESSION["pass"], $user->__get("hash"))) {
-        print("wrong pass");
+    } elseif (!passMatch($_SESSION["pass"], $user->__get("hash"))) {
         $error = 103; //password entered incorrectly"
     } else {
         //login successful

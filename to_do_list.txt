@@ -1,18 +1,19 @@
+known errors:
+- password_verify() isn't working 
+    > even with the correct password returns false
+
 current plan:
-    -implement password hashing, hash current entries in the database
+-update address, then continue with checkout
 
 functions that need filling or testing:
 - addAddressToUser()
 - isAddressComplete();
 
 other:
-- hash passwords & payment details in database
 - configure .htaccess
 - distinguish types of postage -- eu/international
 - checkout
 - purchase confirmation
 - history -- list of orders by client id?
 - monitor current order
-- payment method entry
-- update personal data
-- address entry/addition
+- payment method data processing

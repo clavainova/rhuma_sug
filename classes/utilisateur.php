@@ -6,6 +6,7 @@ class Utilisateur
     //compulsory on creation
     private $email;
     private $password;
+    private $id;
     //compulsory on registration, blank by default
     private $hash;
     //compulsory on order
@@ -20,11 +21,12 @@ class Utilisateur
 
     //payment details here
 
-    public function __construct($mail, $hash = "")
+    public function __construct($mail, $hash = "", $id="")
     {
         //print("initialising, email: " . $mail . "<br>pass: " . $pass);
         $this->email = $mail;
         $this->hash = $hash;
+        $this->id = $id;
         //print("<br>initialising 2, email: " . $this->email . "<br>pass: " . $this->password);
     }
 

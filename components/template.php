@@ -4,7 +4,7 @@
 <?php
 //functions/classes needed for site to function
 include_once "account_management/functions.php";
-include_once "account_management/sessionstart.php";
+include "account_management/sessionstart.php";
 include_once "classes/utilisateur.php";
 include_once "classes/produit.php";
 include_once "classes/basket.php";

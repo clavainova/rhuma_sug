@@ -31,10 +31,27 @@ function checkMatch($str, $str2)
 //returns: bool
 function isJustLetters($str)
 {
-    if (!preg_match('/[^A-Za-z0-9]/', $str)) {
-        return true;
+    if (!preg_match("/^[a-zA-Z]+$/", $str)) {
+        return false;
     }
-    return false;
+    return true;
+}
+
+//*****************************[ADDRESS VERIFICATION]***************************//
+//is the address of a user filled in?
+function isAddressComplete($email)
+{
+    $pdo = getConnection();
+    $users = fetchData($pdo, "Clients"); //fetch clients
+    foreach ($users as $user) {
+        print($user["address1"]);
+        //if it has the email and an address field filled in, it works
+        //only one required because you have to enter them all, partial entry not allowed
+        if (($user["email"] == $email) && ($user["address1"] !== null)) {
+            return true;            
+        }
+    }
+    return false;;
 }
 
 //***********************[SPECIFIC VERIFICATION]***********************//
@@ -149,7 +166,7 @@ function fetchSpecificUser($pdo, $index, $field)
         if ($value[$index] == $field) {
             //the values are good but they're not being constructed in the object
             //correctly -- this is the locaion of the error
-            return new Utilisateur($value["email"], $value["hash"]);
+            return new Utilisateur($value["email"], $value["hash"], $value["client_id"]);
             //for testing:
             //print("<br>values in object when passed<br>");
             //$user->checkValues();
@@ -186,14 +203,53 @@ function verifyUser($pdo, $email)
     }
 }
 
+
 //takes a user, updates their address details
 function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = "")
 {
     //need to update this so it alters an existing one instead of inserting a new one
-    ($stmt = "UPDATE Clients
-    SET nom = :nom, prenom = :prenom, address1 = :addr1, address2 = :addr2, city = :ville, region = :region, postcode = :cp, country = :pays, phone = :phone
+    $sql = "UPDATE Clients
+    SET nom = :nom, 
+    prenom = :prenom, 
+    address1 = :addr1, 
+    address2 = :addr2, 
+    city = :ville, 
+    region = :region, 
+    postcode = :cp, 
+    country = :pays, 
+    phone = :phone
+    WHERE `Clients`.`client_id` = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
+    $stmt->bindValue(":prenom", $prenom, PDO::PARAM_STR);
+    $stmt->bindValue(":addr1", $addr1, PDO::PARAM_STR);
+    $stmt->bindValue(":addr2", $addr2, PDO::PARAM_STR);
+    $stmt->bindValue(":ville", $ville, PDO::PARAM_STR);
+    $stmt->bindValue(":region", $region, PDO::PARAM_STR);
+    $stmt->bindValue(":cp", $cp, PDO::PARAM_STR);
+    $stmt->bindValue(":pays", $pays, PDO::PARAM_STR);
+    $stmt->bindValue(":phone", $phone, PDO::PARAM_INT);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/* old way of binding params:
+   ($stmt = "UPDATE Clients
+    SET nom = :nom, 
+    prenom = :prenom, 
+    address1 = :addr1, 
+    address2 = :addr2, 
+    city = :ville, 
+    region = :region, 
+    postcode = :cp, 
+    country = :pays, 
+    phone = :phone
     WHERE `Clients`.`client_id` = :id");
-    if (!$pdo->prepare($stmt)->execute(array(
+    if ($pdo->prepare($stmt)->execute(array(
         ":nom" => $nom,
         ":prenom" => $prenom, 
         ":addr1" => $addr1, 
@@ -205,11 +261,12 @@ function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $
         ":phone" => $phone,
         ":id" => $id
         ))) {
-        return false;
-    } else {
+            var_dump($stmt);
         return true;
+    } else {
+        return false;
     }
-}
+*/
 
 //send verification email with corresponding hash
 function sendEmail($thisUser)
@@ -254,7 +311,8 @@ function getHash($str)
 //returns a boolean
 function passMatch($hash, $pass)
 {
-    return password_verify($pass, $hash);
+    //print($pass . " hash: " . $hash);
+    return !password_verify($pass, $hash);
 }
 
 //logout: unset cookies, destroy session
@@ -302,7 +360,7 @@ function verifyLogin()
 function getCurrentUser()
 {
     $pdo = getConnection();
-    if(!isset($_SESSION["email"])){
+    if (!isset($_SESSION["email"])) {
         return fetchSpecificUser($pdo, "email", $_COOKIE["email"]);
     }
     return fetchSpecificUser($pdo, "email", $_SESSION["email"]);

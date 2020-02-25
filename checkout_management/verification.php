@@ -10,8 +10,8 @@ if (!$basket->getBasket()) {
     $error = 501; //not logged in -- error not displaying
 } else { //passed preliminary verification
     //which address forms are required?
-    if (isAddressComplete()) : //this function hasn't been written yet
-        //$error = 502; //ask for address details? redirect with message?
+    if (!isAddressComplete($_SESSION["email"])) : //this function hasn't been written yet
+        $error = 502; //ask for address details? redirect with message?
 ?>
         <p class="notif">We have no delivery information on file. Please enter it below.</p>
 <?php

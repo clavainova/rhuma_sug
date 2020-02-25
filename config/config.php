@@ -33,6 +33,7 @@ define('ERRORS', array(
     "200" => "Internal error: connection with database failed (code:200)",
     "201" => "Internal error: failed to write to database (code:201)",
     "202" => "Internal error: failed to send email (code:202)",
+    "203" => "Internal error: failed to find current user - try logging in again (code:203)",
     //300 -> user trying to alter url to inject into database
     "300" => "Records in the URL did not match the database (code:300)",
     //500-509 -> basket errors

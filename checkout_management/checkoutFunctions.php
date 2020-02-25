@@ -63,9 +63,3 @@ function isNumber($number)
     }
 }
 
-//*****************************[ADDRESS VERIFICATION]***************************//
-//!!!!!!!!!!!!!UNFINISHED
-//if the address of a user filled in?
-function isAddressComplete(){
-    return true;
-}
