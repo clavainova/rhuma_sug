@@ -44,7 +44,7 @@ function isAddressComplete($email)
     $pdo = getConnection();
     $users = fetchData($pdo, "Clients"); //fetch clients
     foreach ($users as $user) {
-        print($user["address1"]);
+        //print($user["address1"]);
         //if it has the email and an address field filled in, it works
         //only one required because you have to enter them all, partial entry not allowed
         if (($user["email"] == $email) && ($user["address1"] !== null)) {
@@ -157,16 +157,18 @@ function fetchSpecificProduct($productid)
     return false;
 }
 
-//fetch a specific user based on a data point
+//fetch a specific user based on a data point -- hopefully a unique one
 //returns a new client object
 function fetchSpecificUser($pdo, $index, $field)
 {
     $users = fetchData($pdo, "Clients");
     foreach ($users as $value) {
         if ($value[$index] == $field) {
-            //the values are good but they're not being constructed in the object
-            //correctly -- this is the locaion of the error
-            return new Utilisateur($value["email"], $value["hash"], $value["client_id"]);
+            return new Utilisateur($value["email"], $value["hash"], $value["client_id"], $value["phone"], 
+            $value["nom"], $value["prenom"], 
+            $value["address1"], $value["address2"], 
+            $value["city"], $value["region"], 
+            $value["postcode"], $value["country"]);
             //for testing:
             //print("<br>values in object when passed<br>");
             //$user->checkValues();
@@ -267,6 +269,11 @@ function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $
         return false;
     }
 */
+
+//takes the necessary components, writes an order to the database
+function createOrder(){
+
+}
 
 //send verification email with corresponding hash
 function sendEmail($thisUser)

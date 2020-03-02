@@ -1,5 +1,6 @@
 <?php
 include_once "account_management/sessionstart.php";
+include_once "classes/utilisateur.php";
 
 $error = false;
 //preliminary verification
@@ -11,12 +12,16 @@ if (!$basket->getBasket()) {
 } else { //passed preliminary verification
     //which address forms are required?
     if (!isAddressComplete($_SESSION["email"])) : //this function hasn't been written yet
-        $error = 502; //ask for address details? redirect with message?
+        //$error = 502; //ask for address details? redirect with message?
 ?>
         <p class="notif">We have no delivery information on file. Please enter it below.</p>
 <?php
         include "components/addressForms.php";
     else :
+        ?>
+        <p class="notif">Recieving address : <a href="http://localhost/RhumaSug/index.php?page=update">(update any changes here)</a></p>
+        <?php
+        printAddress();
     //show delivery information, ask if correct, provide link to update it
     endif;
 }
@@ -32,5 +37,5 @@ if ($error) {
     session_write_close();
     //if there's been an error, we redirect to the basket page
     //so they can't just fruitlessly input data
-    header("Location: " . "http://localhost/RhumaSug/index.php?page=panier");
+    //header("Location: " . "http://localhost/RhumaSug/index.php?page=panier");
 }

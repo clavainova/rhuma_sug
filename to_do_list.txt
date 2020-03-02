@@ -1,13 +1,13 @@
 known errors:
 - password_verify() isn't working 
-    > even with the correct password returns false
+    > returns true regardless of password
 
-current plan:
--update address, then continue with checkout
-
-functions that need filling or testing:
-- addAddressToUser()
-- isAddressComplete();
+current>>>>payment verification and writing to database
+>>>>adding foreign key to db 
+ALTER TABLE Orders
+ADD CONSTRAINT fk_foreign_key_name
+    FOREIGN KEY (foreign_key_name)
+    REFERENCES target_table(target_key_name);
 
 other:
 - configure .htaccess
@@ -16,4 +16,3 @@ other:
 - purchase confirmation
 - history -- list of orders by client id?
 - monitor current order
-- payment method data processing

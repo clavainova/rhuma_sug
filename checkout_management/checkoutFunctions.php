@@ -27,6 +27,21 @@ function calculatePostage($weight, $location = "eu")
     return ($count * $topValue);
 }
 
+//prints address
+function printAddress()
+{
+    include_once "account_management/functions.php";
+    include_once "classes/utilisateur.php";
+    $user = getCurrentUser();
+
+    print("<div class='highlightbox'><p style='margin-left: 50px;'>" .
+        $user->__get("nom") . " " . $user->__get("prenom") . "<br>" .
+        $user->__get("addr1") . " " . $user->__get("addr2") . "<br>" .
+        $user->__get("city") . ", " . $user->__get("region") . ", " . $user->__get("country") . "<br>" .
+        $user->__get("postcode") .
+        "</p></div>");
+}
+
 //*****************************[PAYMENT VERIFICATION]***************************//
 
 //check if the card number is valid using luhn formula
@@ -63,3 +78,11 @@ function isNumber($number)
     }
 }
 
+//checks if the security code is valid
+//returns boolean
+function isValidCode($code){
+    if(preg_match('/^[0-9]{3,4}$/', $code)){
+        return true;
+    }
+    return false;
+}

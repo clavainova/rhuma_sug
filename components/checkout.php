@@ -22,7 +22,7 @@ $totalPrice = $_POST["itemPrice"] + $_POST["postage"];
     <p><?php print($totalPrice."€"); ?></p>
 </div>
 
-<form class="connexion" action="account_management/addressUpdate.php" method="POST">
+<form class="connexion" action="" method="POST">
 <h1>Payment</h1><h1> Data:</h1>    
 card number :
     <input type="text" name="cardnum" />

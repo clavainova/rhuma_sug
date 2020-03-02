@@ -10,7 +10,8 @@ class Utilisateur
     //compulsory on registration, blank by default
     private $hash;
     //compulsory on order
-    private $birthday;
+    private $nom;
+    private $prenom;
     private $phone;
     private $addr1;
     private $city;
@@ -21,12 +22,21 @@ class Utilisateur
 
     //payment details here
 
-    public function __construct($mail, $hash = "", $id="")
+    public function __construct($mail, $hash = "", $id="", $phone="", $nom="", $prenom="", $addr1="", $addr2="", $city="", $region ="", $postcode="", $country="")
     {
         //print("initialising, email: " . $mail . "<br>pass: " . $pass);
         $this->email = $mail;
         $this->hash = $hash;
         $this->id = $id;
+        $this->phone = $phone;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->addr1 = $addr1;
+        $this->addr2 = $addr2;
+        $this->city = $city;
+        $this->region = $region;
+        $this->postcode = $postcode;
+        $this->country = $country;
         //print("<br>initialising 2, email: " . $this->email . "<br>pass: " . $this->password);
     }
 

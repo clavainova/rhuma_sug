@@ -6,8 +6,7 @@ $error = false;
 //gotta keep authenticating all this basic stuff for security
 if (!verifyLogin()) {
     $error = 501; //not logged in
-} else if (!isAddressComplete($_SESSION["email"])) {
-    $error = 502; //no address on record, need to enter one
+} else if (true) { //placeholder
 }
 //check payment details
 
