@@ -1,5 +1,5 @@
 <?php
-include_once "account_management/sessionstart.php";
+//include "../account_management/sessionstart.php";
 
 //calculate postage, returns the value
 //reads from the POSTAGE array in config
@@ -52,6 +52,7 @@ function isValidCard($card)
     $card = rtrim($card, "."); //trim the last character
     $card = strrev($card); //reverse the order of the numbers
     $total = 0;
+    $card = str_split($card); //make it an array so we can use foreach
     foreach ($card as $number) {
         if ($number % 2 !== 0) { //if number is odd
             $number = $number * 2; //multiply by two
@@ -80,9 +81,32 @@ function isNumber($number)
 
 //checks if the security code is valid
 //returns boolean
-function isValidCode($code){
-    if(preg_match('/^[0-9]{3,4}$/', $code)){
+function isValidCode($code)
+{
+    if (preg_match('/^[0-9]{3,4}$/', $code)) {
         return true;
     }
     return false;
+}
+
+//*****************************[ORDER HANDLING]***************************//
+
+
+//makes order, sends request
+function handleOrder($pdo, $userId, $productId, $quantity, $sc, $cardnum)
+{
+    /*
+
+INSERT INTO `Orders` 
+(`order_id`, `client_id`, 
+`product_id`, `order_date`, 
+`quantity`, `paid`, 
+`card_number`, 
+`security_code`, `sent`) VALUES (NULL, '24', '3', CURRENT_TIMESTAMP, '2', '0', '11223233', '123', '0');
+
+    */
+
+    
+
+    return;
 }

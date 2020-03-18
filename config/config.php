@@ -43,6 +43,7 @@ define('ERRORS', array(
     //510-519 -> payment details errors
     "510" => "Invalid payment details (code:510)",
     "511" => "Card number does not match real card (code:511)",
+    "512" => "Security code incorrectly formatted (code:512)",
     //600-609 -> address errors
     "600" => "Name contains invalid characters (only allowed letters) (code:600)",
     "601" => "Ville or region contains invalid characters (code:601)",

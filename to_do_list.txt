@@ -1,6 +1,9 @@
 known errors:
 - none!
 
+>>>>function handleOrder($pdo, $userId, $productId, $quantity, $sc, $cardnum)
+secondaryVerification
+
 current>>>>payment verification and writing to database
 
 ALTER TABLE Orders 

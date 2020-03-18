@@ -50,6 +50,8 @@ function isAddressComplete($email)
         if (($user["email"] == $email) && ($user["address1"] !== null)) {
             return true;            
         }
+        var_dump($user["email"]);
+        var_dump($email);
     }
     return false;;
 }
@@ -205,7 +207,6 @@ function verifyUser($pdo, $email)
     }
 }
 
-
 //takes a user, updates their address details
 function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $pays, $phone, $addr2 = "")
 {
@@ -269,11 +270,6 @@ function updateAddress($pdo, $id, $nom, $prenom, $addr1, $ville, $region, $cp, $
         return false;
     }
 */
-
-//takes the necessary components, writes an order to the database
-function createOrder(){
-
-}
 
 //send verification email with corresponding hash
 function sendEmail($thisUser)
