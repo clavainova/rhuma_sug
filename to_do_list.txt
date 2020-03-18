@@ -2,11 +2,20 @@ known errors:
 - none!
 
 current>>>>payment verification and writing to database
->>>>adding foreign key to db 
-ALTER TABLE Orders
-ADD CONSTRAINT fk_foreign_key_name
-    FOREIGN KEY (foreign_key_name)
-    REFERENCES target_table(target_key_name);
+
+ALTER TABLE Orders 
+ADD CONSTRAINT fk_category 
+FOREIGN KEY (client_id) 
+REFERENCES Clients(client_id)
+
+//
+
+ALTER TABLE Clients 
+ADD CONSTRAINT fk_category 
+FOREIGN KEY (order_id) 
+REFERENCES Orders(order_id)
+MySQL said: Documentation
+#1022 - Can't write; duplicate key in table '#sql-5b0_310'
 
 other:
 - configure .htaccess
