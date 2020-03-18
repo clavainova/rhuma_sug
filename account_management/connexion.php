@@ -22,7 +22,7 @@ if ((!isset($_POST["email"]) || $_POST["email"] == "") || (!isset($_POST["pass"]
     } else {
         //login successful
         //add remember me cookie if relevant
-        if ($_POST["remember_me"] == '1' || $_POST["remember_me"] == 'on') {
+        if (isset($_POST["remember_me"]) || isset($_POST["remember_me"])) {
             $hour = time() + 3600 * 24 * 30;
             setcookie('email', $_SESSION["email"], time() + 3600);
             setcookie('password', $_SESSION["pass"], time() + 3600);

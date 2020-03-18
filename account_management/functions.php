@@ -316,10 +316,10 @@ function getHash($str)
 
 //checks if the password matches the hash
 //returns a boolean
-function passMatch($hash, $pass)
+function passMatch($pass, $hash)
 {
     //print($pass . " hash: " . $hash);
-    return !password_verify($pass, $hash);
+    return password_verify($pass, $hash);
 }
 
 //logout: unset cookies, destroy session

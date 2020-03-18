@@ -1,6 +1,5 @@
 known errors:
-- password_verify() isn't working 
-    > returns true regardless of password
+- none!
 
 current>>>>payment verification and writing to database
 >>>>adding foreign key to db 

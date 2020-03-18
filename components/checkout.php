@@ -1,5 +1,10 @@
 <?php
 
+if(!verifyLogin()){ //REDIRECT USER IMMEDIATELY IF NOT LOGGED IN
+    $_SESSION["error"] = 501;
+    header("Location: http://localhost/RhumaSug/index.php?page=panier");
+}
+
 
 //need to calculate cumulative price for total section
 $basket = new Basket();
